@@ -42,11 +42,11 @@ democratizes transformers by making them accessible to those equipped
 with basic computing resources and/or dealing with important small
 datasets.
  
-#### ViT-Lite: Lightweight ViT Lightweight version of
-[ViT](https://arxiv.org/abs/2010.11929) We show that an image is <b>not always
-worth 16x16 words</b> and that smaller patching can be used to train on smaller
-datasets, showing that transformers are not in fact ''data-hungry,'' as the
-authors proposed.
+#### ViT-Lite: Lightweight ViT 
+Different from [ViT](https://arxiv.org/abs/2010.11929) we show that <i>an image 
+is <b>not always</b> worth 16x16 words</i> and the image patch size matters.
+Transformers are not in fact ''data-hungry,'' as the authors proposed, and
+smaller patching can be used to train efficiently on smaller datasets.
 
 #### CVT: Compact Vision Transformers
 Compact Vision Transformers better utilize information with Sequence Pooling post 
@@ -55,7 +55,7 @@ encoder, eliminating the need for the class token.
 #### CCT: Compact Convolutional Transformers
 Compact Convolutional Transformers not only use the sequence pooling but also
 replace the patch embedding with a convolutional embedding, allowing for better
-inductive bias and eliminating the need for positional embeddings.
+inductive bias and making positional embeddings optional.
 
 ![Comparison](images/comparison.png)
 
