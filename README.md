@@ -1,6 +1,6 @@
 # Compact Transformers
 
-Paper Link: [currently unavailable]()
+Preprint Link: [arXiv](https://arxiv.org/abs/2104.05704)
 
 Authors: 
 [Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
@@ -179,10 +179,13 @@ Model zoo will be available soon.
 
 # Citation
 ```bibtex
-@article{hassani2021cct,
+@article{hassani2021escaping,
 	title        = {Escaping the Big Data Paradigm with Compact Transformers},
 	author       = {Ali Hassani and Steven Walton and Nikhil Shah and Abulikemu Abuduweili and Jiachen Li and Humphrey Shi},
 	year         = 2021,
-	journal      = {arXiv preprint arXiv:}
+	url          = {https://arxiv.org/abs/2104.05704},
+	eprint       = {2104.05704},
+	archiveprefix = {arXiv},
+	primaryclass = {cs.CV}
 }
 ```
