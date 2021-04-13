@@ -97,7 +97,8 @@ class TransformerClassifier(nn.Module):
                                                    requires_grad=True)
                 nn.init.trunc_normal_(self.positional_emb, std=0.2)
             else:
-                self.positional_emb = self.sinusoidal_embedding(sequence_length, embedding_dim)
+                self.positional_emb = nn.Parameter(self.sinusoidal_embedding(sequence_length, embedding_dim),
+                                                   requires_grad=False)
         else:
             self.positional_emb = None
 
