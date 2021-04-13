@@ -111,7 +111,8 @@ def main():
         model.cuda(args.gpu_id)
         criterion = criterion.cuda(args.gpu_id)
 
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr,
+                                  weight_decay=args.weight_decay)
 
     normalize = [transforms.Normalize(mean=img_mean, std=img_std)]
 
@@ -156,7 +157,9 @@ def main():
         best_acc1 = max(acc1, best_acc1)
 
     total_mins = (time() - time_begin) / 60
-    print(f'Script finished in {total_mins} minutes, best top-1: {best_acc1}, final top-1: {acc1}')
+    print(f'Script finished in {total_mins:.2f} minutes, '
+          f'best top-1: {best_acc1:.2f}, '
+          f'final top-1: {acc1:.2f}')
     torch.save(model.state_dict(), args.checkpoint_path)
 
 
@@ -164,7 +167,7 @@ def adjust_learning_rate(optimizer, epoch, args):
     lr = args.lr
     if hasattr(args, 'warmup') and epoch < args.warmup:
         lr = lr / (args.warmup - epoch)
-    elif not args.disable_cos:  # cosine lr schedule
+    elif not args.disable_cos:
         lr *= 0.5 * (1. + math.cos(math.pi * (epoch - args.warmup) / (args.epochs - args.warmup)))
 
     for param_group in optimizer.param_groups:
@@ -212,10 +215,7 @@ def cls_train(train_loader, model, criterion, optimizer, epoch, args):
 
         if args.print_freq >= 0 and i % args.print_freq == 0:
             avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-            print('[Epoch {}][Train][{}] \t Loss: {:.4e} \t Top-1 {:6.2f}'.format(epoch,
-                                                                                  i,
-                                                                                  avg_loss,
-                                                                                  avg_acc1))
+            print(f'[Epoch {epoch+1}][Train][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
 
 
 def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None):
@@ -238,14 +238,11 @@ def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None
 
             if args.print_freq >= 0 and i % args.print_freq == 0:
                 avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-                print('[Epoch {}][Eval][{}] \t Loss: {:.4e} \t Top-1 {:6.2f}'.format(epoch,
-                                                                                     i,
-                                                                                     avg_loss,
-                                                                                     avg_acc1))
+                print(f'[Epoch {epoch+1}][Eval][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
 
     avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
     total_mins = -1 if time_begin is None else (time() - time_begin) / 60
-    print('[Epoch {}] \t \t Top-1 {:6.2f} \t Time: {:.2f}'.format(epoch, avg_acc1, total_mins))
+    print(f'[Epoch {epoch+1}] \t \t Top-1 {avg_acc1:6.2f} \t \t Time: {total_mins:.2f}')
 
     return avg_acc1
 
