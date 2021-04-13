@@ -3,17 +3,19 @@
 Paper Link: [currently unavailable]()
 
 Authors: 
-[Ali Hassani](https://alihassanijr.com/),
-[Steven Walton](https://github.com/stevenwalton),
-[Nikhil Shah](https://itsshnik.github.io/),
-[Abulikemu Adbudweili](https://github.com/Walleclipse),
-[Jiachen Li](https://chrisjuniorli.github.io/),
-[Humphrey Shi](https://www.humphreyshi.com/)
+[Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
+[Steven Walton<sup>[1]</sup><span>&#42;</span>](https://github.com/stevenwalton),
+[Nikhil Shah<sup>[1]</sup>](https://itsshnik.github.io/),
+[Abulikemu Adbudweili<sup>[1]</sup>](https://github.com/Walleclipse),
+[Jiachen Li<sup>[1,2]</sup>](https://chrisjuniorli.github.io/), 
+and
+[Humphrey Shi<sup>[1,2,3]</sup>](https://www.humphreyshi.com/)
 
 
-<small>Note: Ali Hassani and Steven Walton contributed equal work</small>
+<small><span>&#42;</span>Ali Hassani and Steven Walton contributed equal work</small>
 
-In association with The University of Oregon and UIUC
+In association with SHI Lab @ University of Oregon<sup>[1]</sup> and
+UIUC<sup>[2]</sup>, and Picsart AI Research (PAIR)<sup>[3]</sup>
 
 
 ![model-sym](images/model_sym.png)
@@ -42,20 +44,23 @@ democratizes transformers by making them accessible to those equipped
 with basic computing resources and/or dealing with important small
 datasets.
  
-#### ViT-Lite: Lightweight ViT
-Lightweight version of [ViT](https://arxiv.org/abs/2010.11929)
-We show that an image is <b>not worth 16x16 words</b> and that smaller patching
-can be used to train on smaller datasets, showing that transformers are not in
-fact ''data-hungry,'' as the authors proposed.
+#### ViT-Lite: Lightweight ViT 
+Different from [ViT](https://arxiv.org/abs/2010.11929) we show that <i>an image 
+is <b>not always</b> worth 16x16 words</i> and the image patch size matters.
+Transformers are not in fact ''data-hungry,'' as the authors proposed, and
+smaller patching can be used to train efficiently on smaller datasets.
 
 #### CVT: Compact Vision Transformers
 Compact Vision Transformers better utilize information with Sequence Pooling post 
-encoder, eliminating the need for the class token. 
+encoder, eliminating the need for the class token while achieving better
+accuracy.
 
 #### CCT: Compact Convolutional Transformers
 Compact Convolutional Transformers not only use the sequence pooling but also
 replace the patch embedding with a convolutional embedding, allowing for better
-inductive bias and eliminating the need for positional embeddings.
+inductive bias and making positional embeddings optional. CCT achieves better
+accuracy than ViT-Lite and CVT and increases the flexibility of the input
+parameters.
 
 ![Comparison](images/comparison.png)
 
@@ -65,12 +70,9 @@ following command. If you are running on a CPU we recommend this model.
 ```bash
 python main.py \
        --dataset-name=cifar10 \
-       --model cct \
-       --model-size 2 \
+       --model cct_2 \
        --conv-size 3 \
        --conv-layers 1 \
-       --cos \
-       --auto-aug \
        path/to/cifar
 ```
 
@@ -80,30 +82,106 @@ your machine, please use the following command.
 ```bash
 python main.py \
        --dataset-name=cifar10 \
-       --model cct \
-       --model-size 7 \
+       --model cct_7 \
        --conv-size 3 \
        --conv-layers 1 \
-       --cos \
-       --auto-aug \
        path/to/cifar
 ```
 
 
 # Results
-| Model     | CIFAR-10 | CIFAR-100 | # Params | MACs |
-|:---------:|:--------:|:---------:|:--------:|:----:|
-| ViT-Lite |
-| ViT-Lite-7/4 | 91.38% | 69.74% | 3.717M |0.239G |
-| ViT-Lite-6/4 | 90.94% | 69.20% | 3.191M |0.205G |
-| CVT |
-| CVT-7/4 | 92.43% | 73.01% | 3.717M |0.236G |
-| CVT-6/4 | 92.58% | 72.25% | 3.190M |0.202G |
-| CCT |
-| CCT-2/3x2 | 89.17%   | 66.90%    | 0.284M | 0.033G |
-| CCT-4/3x2 | 91.45%   | 70.46%    | 0.482M | 0.046G |
-| CCT-6/3x2 | 93.56%   | 74.47%    | 3.327M | 0.241G |
-| CCT-7/3x2 | 93.65%   | 74.77%    | 3.853M | 0.275G |
-| CCT-7/3x1 | 94.72%   | 76.67%    | 3.760M | 0.947G |
+Type can be read in the format `L/PxC` where `L` is the number of transformer
+layers, `P` is the patch/convolution size, and `C` (CCT only) is the number of
+convolutional layers.
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td> 
+            <td><b>Type</b></td> 
+            <td><b>CIFAR-10</b></td> 
+            <td><b>CIFAR-100</b></td> 
+            <td><b># Params</b></td> 
+            <td><b>MACs</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2>ViT-Lite</td>
+            <td>7/4</td>
+            <td>91.38%</td>
+            <td>69.75%</td>
+            <td>3.717M</td>
+            <td>0.239G</td>
+        </tr>
+        <tr>
+            <td>6/4</td>
+            <td>90.94%</td>
+            <td>69.20%</td>
+            <td>3.191M</td>
+            <td>0.205G</td>
+        </tr>
+        <tr>
+            <td rowspan=2>CVT</td>
+            <td>7/4</td>
+            <td>92.43%</td>
+            <td>73.01%</td>
+            <td>3.717M</td>
+            <td>0.236G</td>
+        </tr>
+        <tr>
+            <td>6/4</td>
+            <td>92.58%</td>
+            <td>72.25%</td>
+            <td>3.190M</td>
+            <td>0.202G</td>
+        </tr>
+        <tr>
+            <td rowspan=5>CCT</td>
+            <td>2/3x2</td>
+            <td>89.17%</td>
+            <td>66.90%</td>
+            <td><b>0.284M</b></td>
+            <td><b>0.033G</b></td>
+        </tr>
+        <tr>
+            <td>4/3x2</td>
+            <td>91.45%</td>
+            <td>70.46%</td>
+            <td>0.482M</td>
+            <td>0.046G</td>
+        </tr>
+        <tr>
+            <td>6/3x2</td>
+            <td>93.56%</td>
+            <td>74.47%</td>
+            <td>3.327M</td>
+            <td>0.241G</td>
+        </tr>
+        <tr>
+            <td>7/3x2</td>
+            <td>93.65%</td>
+            <td>74.77%</td>
+            <td>3.853M</td>
+            <td>0.275G</td>
+        </tr>
+        <tr>
+            <td>7/3x1</td>
+            <td><b>94.72%</b></td>
+            <td><b>76.67%</b></td>
+            <td>3.760M</td>
+            <td>0.947G</td>
+        </tr>
+    </tbody>
+</table>
 
 # Citation
+```bibtex
+@article{xu2021ultrasr,
+      title={UltraSR: Spatial Encoding is a Missing Key for Implicit Image
+          Function-based Arbitrary-Scale Super-Resolution},
+        author={Xingqian Xu and Zhangyang Wang and Humphrey Shi},
+          journal={arXiv preprint arXiv:2103.12716},
+            year={2021}
+}
+```
