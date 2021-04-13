@@ -3,6 +3,7 @@
 import argparse
 from time import time
 import math
+import shutil
 
 import torch
 import torch.nn as nn
@@ -33,6 +34,11 @@ def init_parser():
 
     parser.add_argument('--print-freq', default=10, type=int, metavar='N',
                         help='log frequency (by iteration)')
+
+    parser.add_argument('--checkpoint-path',
+                        type=str,
+                        default='checkpoint.pth',
+                        help='path to checkpoint (default: checkpoint.pth)')
 
     # Optimization hyperparams
     parser.add_argument('--epochs', default=200, type=int, metavar='N',
@@ -152,6 +158,7 @@ def main():
 
     total_mins = (time() - time_begin) / 60
     print(f'Script finished in {total_mins} minutes, best top-1: {best_acc1}, final top-1: {acc1}')
+    torch.save(model.state_dict(), args.checkpoint_path)
 
 
 def adjust_learning_rate(optimizer, epoch, args):
