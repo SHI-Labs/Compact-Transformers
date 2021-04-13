@@ -3,8 +3,7 @@
 Preprint Link: [Escaping the Big Data Paradigm with Compact Transformers
 ](https://arxiv.org/abs/2104.05704)
 
-Authors: 
-[Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
+By [Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
 [Steven Walton<sup>[1]</sup><span>&#42;</span>](https://github.com/stevenwalton),
 [Nikhil Shah<sup>[1]</sup>](https://itsshnik.github.io/),
 [Abulikemu Adbudweili<sup>[1]</sup>](https://github.com/Walleclipse),
