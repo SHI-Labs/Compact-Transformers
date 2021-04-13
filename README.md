@@ -177,7 +177,7 @@ convolutional layers.
 
 # Citation
 ```bibtex
-@article{xu2021ultrasr,
+@article{hassani2021cct,
       title={Escaping the Big Data Paradigm with Compact Transformers},
         author={Ali Hassani and Steven Walton and Nikhil Shah and Abulikemu
             Abuduweili and Jiachen Li and Humphrey Shi},
