@@ -121,7 +121,7 @@ class TransformerClassifier(nn.Module):
             cls_token = self.class_emb.expand(x.shape[0], -1, -1)
             x = torch.cat((cls_token, x), dim=1)
 
-        if self.positional_emb:
+        if self.positional_emb is not None:
             x += self.positional_emb
 
         x = self.dropout(x)
