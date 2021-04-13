@@ -104,8 +104,6 @@ def main():
                                             kernel_size=args.conv_size,
                                             patch_size=args.patch_size)
 
-    print(model)
-
     criterion = LabelSmoothingCrossEntropy()
 
     if (not args.no_cuda) and torch.cuda.is_available():
@@ -149,6 +147,7 @@ def main():
         batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers)
 
+    print("Beginning training")
     time_begin = time()
     for epoch in range(args.epochs):
         adjust_learning_rate(optimizer, epoch, args)
