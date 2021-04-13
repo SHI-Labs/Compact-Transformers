@@ -1,6 +1,7 @@
 # Compact Transformers
 
-Preprint Link: [arXiv](https://arxiv.org/abs/2104.05704)
+Preprint Link: [**Escaping the Big Data Paradigm with Compact Transformers
+**](https://arxiv.org/abs/2104.05704)
 
 Authors: 
 [Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
