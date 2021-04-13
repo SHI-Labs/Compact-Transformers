@@ -3,17 +3,19 @@
 Paper Link: [currently unavailable]()
 
 Authors: 
-[Ali Hassani](https://alihassanijr.com/),
-[Steven Walton](https://github.com/stevenwalton),
-[Nikhil Shah](https://itsshnik.github.io/),
-[Abulikemu Adbudweili](https://github.com/Walleclipse),
-[Jiachen Li](https://chrisjuniorli.github.io/),
-[Humphrey Shi](https://www.humphreyshi.com/)
+[Ali Hassani<sup>[1]</sup><span>&#42;</span>](https://alihassanijr.com/),
+[Steven Walton<sup>[1]</sup><span>&#42;</span>](https://github.com/stevenwalton),
+[Nikhil Shah<sup>[1]</sup>](https://itsshnik.github.io/),
+[Abulikemu Adbudweili<sup>[1]</sup>](https://github.com/Walleclipse),
+[Jiachen Li<sup>[1,2]</sup>](https://chrisjuniorli.github.io/), 
+and
+[Humphrey Shi<sup>[1,2,3]</sup>](https://www.humphreyshi.com/)
 
 
-<small>Note: Ali Hassani and Steven Walton contributed equal work</small>
+<small><span>&#42;</span>Ali Hassani and Steven Walton contributed equal work</small>
 
-In association with The University of Oregon and UIUC
+In association with SHI Lab @ University of Oregon<sup>[1]</sup> and
+UIUC<sup>[2]</sup>, and Picsart AI Research (PAIR)<sup>[3]</sup>
 
 
 ![model-sym](images/model_sym.png)
@@ -68,12 +70,9 @@ following command. If you are running on a CPU we recommend this model.
 ```bash
 python main.py \
        --dataset-name=cifar10 \
-       --model cct \
-       --model-size 2 \
+       --model cct_2 \
        --conv-size 3 \
        --conv-layers 1 \
-       --cos \
-       --auto-aug \
        path/to/cifar
 ```
 
@@ -83,12 +82,9 @@ your machine, please use the following command.
 ```bash
 python main.py \
        --dataset-name=cifar10 \
-       --model cct \
-       --model-size 7 \
+       --model cct_7 \
        --conv-size 3 \
        --conv-layers 1 \
-       --cos \
-       --auto-aug \
        path/to/cifar
 ```
 
@@ -180,3 +176,12 @@ convolutional layers.
 </table>
 
 # Citation
+```bibtex
+@article{xu2021ultrasr,
+      title={UltraSR: Spatial Encoding is a Missing Key for Implicit Image
+          Function-based Arbitrary-Scale Super-Resolution},
+        author={Xingqian Xu and Zhangyang Wang and Humphrey Shi},
+          journal={arXiv preprint arXiv:2103.12716},
+            year={2021}
+}
+```
