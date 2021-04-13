@@ -28,6 +28,9 @@ def init_parser():
     parser.add_argument('data', metavar='DIR',
                         help='path to dataset')
 
+    parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
+                        help='number of data loading workers (default: 4)')
+
     parser.add_argument('--print-freq', default=10, type=int, metavar='N',
                         help='log frequency (by iteration)')
 
@@ -41,8 +44,6 @@ def init_parser():
                         help='mini-batch size (default: 128)', dest='batch_size')
     parser.add_argument('--lr', default=0.0005, type=float,
                         help='initial learning rate')
-    parser.add_argument('--momentum', default=0.9, type=float,
-                        help='momentum')
     parser.add_argument('--weight-decay', default=3e-2, type=float,
                         help='weight decay (default: 1e-4)')
     parser.add_argument('--clip-grad-norm', default=0., type=float,
@@ -86,7 +87,6 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    n_workers = 8
     img_size = 32
     num_classes = 10
     img_mean, img_std = [0.4914, 0.4822, 0.4465], [0.2470, 0.2435, 0.2616]
@@ -136,12 +136,12 @@ def main():
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset, batch_size=args.batch_size, shuffle=True,
-        num_workers=n_workers)
+        num_workers=args.workers)
 
     val_loader = torch.utils.data.DataLoader(
         val_dataset,
         batch_size=args.batch_size, shuffle=False,
-        num_workers=n_workers)
+        num_workers=args.workers)
 
     time_begin = time()
     for epoch in range(args.epochs):
@@ -204,7 +204,7 @@ def cls_train(train_loader, model, criterion, optimizer, epoch, args):
 
         optimizer.step()
 
-        if args.print_freq is not None and i % args.print_freq == 0:
+        if args.print_freq >= 0 and i % args.print_freq == 0:
             avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
             print('[Epoch {}][Train][{}] \t Loss: {:.4e} \t Top-1 {:6.2f}'.format(epoch,
                                                                                   i,
@@ -230,7 +230,7 @@ def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None
             loss_val += float(loss.item() * images.size(0))
             acc1_val += float(acc1[0] * images.size(0))
 
-            if args.print_freq is not None and i % args.print_freq == 0:
+            if args.print_freq >= 0 and i % args.print_freq == 0:
                 avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
                 print('[Epoch {}][Eval][{}] \t Loss: {:.4e} \t Top-1 {:6.2f}'.format(epoch,
                                                                                      i,
@@ -238,8 +238,8 @@ def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None
                                                                                      avg_acc1))
 
     avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-    mins_since_beg = -1 if time_begin is None else (time() - time_begin) / 60
-    print('[Epoch {}] \t \t Top-1 {:6.2f} \t Time: {:.2f}'.format(epoch, avg_acc1, mins_since_beg))
+    total_mins = -1 if time_begin is None else (time() - time_begin) / 60
+    print('[Epoch {}] \t \t Top-1 {:6.2f} \t Time: {:.2f}'.format(epoch, avg_acc1, total_mins))
 
     return avg_acc1
 
