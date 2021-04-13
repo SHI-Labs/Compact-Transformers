@@ -6,7 +6,6 @@ import math
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim
 import torch.utils.data
 import torchvision.transforms as transforms

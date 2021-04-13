@@ -72,7 +72,7 @@ python main.py \
        --dataset-name=cifar10 \
        --model cct_2 \
        --conv-size 3 \
-       --conv-layers 1 \
+       --conv-layers 2 \
        path/to/cifar
 ```
 
@@ -175,13 +175,14 @@ convolutional layers.
     </tbody>
 </table>
 
+Model zoo will be available soon.
+
 # Citation
 ```bibtex
 @article{hassani2021cct,
-      title={Escaping the Big Data Paradigm with Compact Transformers},
-        author={Ali Hassani and Steven Walton and Nikhil Shah and Abulikemu
-            Abuduweili and Jiachen Li and Humphrey Shi},
-          journal={arXiv preprint arXiv:},
-            year={2021}
+	title        = {Escaping the Big Data Paradigm with Compact Transformers},
+	author       = {Ali Hassani and Steven Walton and Nikhil Shah and Abulikemu Abuduweili and Jiachen Li and Humphrey Shi},
+	year         = 2021,
+	journal      = {arXiv preprint arXiv:}
 }
 ```
