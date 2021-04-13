@@ -178,10 +178,10 @@ convolutional layers.
 # Citation
 ```bibtex
 @article{xu2021ultrasr,
-      title={UltraSR: Spatial Encoding is a Missing Key for Implicit Image
-          Function-based Arbitrary-Scale Super-Resolution},
-        author={Xingqian Xu and Zhangyang Wang and Humphrey Shi},
-          journal={arXiv preprint arXiv:2103.12716},
+      title={Escaping the Big Data Paradigm with Compact Transformers},
+        author={Ali Hassani and Steven Walton and Nikhil Shah and Abulikemu
+            Abuduweili and Jiachen Li and Humphrey Shi},
+          journal={arXiv preprint arXiv:},
             year={2021}
 }
 ```
