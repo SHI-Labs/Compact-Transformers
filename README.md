@@ -65,6 +65,14 @@ parameters.
 ![Comparison](images/comparison.png)
 
 # How to run 
+
+Please make sure you're using the latest stable PyTorch version:
+```bash
+torch==1.8.1
+torchvision==0.8.1
+```
+Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) page for detailed instructions.
+
 We recommend starting with our faster version (CCT-2/3x2) which can be run with the
 following command. If you are running on a CPU we recommend this model.
 ```bash

@@ -3,7 +3,6 @@
 import argparse
 from time import time
 import math
-import shutil
 
 import torch
 import torch.nn as nn
