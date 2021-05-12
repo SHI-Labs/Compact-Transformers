@@ -183,7 +183,7 @@ class ViTLite(nn.Module):
                                                            width=img_size),
             embedding_dim=embedding_dim,
             seq_pool=False,
-            dropout=0.1,
+            dropout_rate=0.1,
             attention_dropout=0.,
             stochastic_depth=0.,
             *args, **kwargs)
@@ -218,7 +218,7 @@ class CVT(nn.Module):
                                                            width=img_size),
             embedding_dim=embedding_dim,
             seq_pool=True,
-            dropout=0.,
+            dropout_rate=0.,
             attention_dropout=0.1,
             stochastic_depth=0.1,
             *args, **kwargs)
@@ -261,7 +261,7 @@ class CCT(nn.Module):
                                                            width=img_size),
             embedding_dim=embedding_dim,
             seq_pool=True,
-            dropout=0.,
+            dropout_rate=0.,
             attention_dropout=0.1,
             stochastic_depth=0.1,
             *args, **kwargs)
