@@ -122,6 +122,7 @@ def main():
             CIFAR10Policy()
         ]
     augmentations += [
+        transforms.RandomCrop(img_size, padding=4),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         *normalize,
