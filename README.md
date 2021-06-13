@@ -172,7 +172,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>7/3x1</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6644383/cct7-3x1_cifar10.pth.zip">94.76%</a></b></td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6644400/cct7-3x1_cifar10_best.pth.zip">94.78%</a></b></td>
             <td><b>76.67%</b></td>
             <td>3.760M</td>
             <td>0.947G</td>
