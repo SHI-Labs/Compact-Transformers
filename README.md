@@ -77,6 +77,7 @@ We recommend starting with our faster version (CCT-2/3x2) which can be run with 
 following command. If you are running on a CPU we recommend this model.
 ```bash
 python main.py \
+       --dataset cifar10 \
        --model cct_2 \
        --conv-size 3 \
        --conv-layers 2 \
@@ -88,11 +89,16 @@ If you would like to run our best running model (CCT-7/3x1) with CIFAR-10 on
 your machine, please use the following command.
 ```bash
 python main.py \
+       --dataset cifar10 \
        --model cct_7 \
        --conv-size 3 \
        --conv-layers 1 \
+       --warmup 10 \
+       --batch-size 64 \
        path/to/cifar10
 ```
+
+You can also use `evaluate.py` to evaluate the performance of a checkpoint.
 
 # Results
 Type can be read in the format `L/PxC` where `L` is the number of transformer
