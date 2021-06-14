@@ -20,13 +20,33 @@ model_names = sorted(name for name in cct_models.__dict__
 
 best_acc1 = 0
 
+DATASETS = {
+    'cifar10': {
+        'num_classes': 10,
+        'img_size': 32,
+        'mean': [0.4914, 0.4822, 0.4465],
+        'std': [0.2470, 0.2435, 0.2616]
+    },
+    'cifar100': {
+        'num_classes': 100,
+        'img_size': 32,
+        'mean': [0.5071, 0.4867, 0.4408],
+        'std': [0.2675, 0.2565, 0.2761]
+    }
+}
+
 
 def init_parser():
-    parser = argparse.ArgumentParser(description='CIFAR10 quick training script')
+    parser = argparse.ArgumentParser(description='CIFAR quick training script')
 
     # Data args
     parser.add_argument('data', metavar='DIR',
                         help='path to dataset')
+
+    parser.add_argument('--dataset',
+                        type=str.lower,
+                        choices=['cifar10', 'cifar100'],
+                        default='cifar10')
 
     parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                         help='number of data loading workers (default: 4)')
@@ -92,9 +112,9 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    img_size = 32
-    num_classes = 10
-    img_mean, img_std = [0.4914, 0.4822, 0.4465], [0.2470, 0.2435, 0.2616]
+    img_size = DATASETS[args.dataset]['img_size']
+    num_classes = DATASETS[args.dataset]['num_classes']
+    img_mean, img_std = DATASETS[args.dataset]['mean'], DATASETS[args.dataset]['std']
 
     model = cct_models.__dict__[args.model](img_size=img_size,
                                             num_classes=num_classes,
@@ -129,10 +149,10 @@ def main():
     ]
 
     augmentations = transforms.Compose(augmentations)
-    train_dataset = datasets.CIFAR10(root=args.data, train=True, download=True,
-                                     transform=augmentations)
+    train_dataset = datasets.__dict__[args.dataset.upper()](
+        root=args.data, train=True, download=True, transform=augmentations)
 
-    val_dataset = datasets.CIFAR10(
+    val_dataset = datasets.__dict__[args.dataset.upper()](
         root=args.data, train=False, download=False, transform=transforms.Compose([
             transforms.Resize(img_size),
             transforms.ToTensor(),
