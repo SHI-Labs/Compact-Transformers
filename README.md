@@ -164,8 +164,8 @@ convolutional layers.
         </tr>
         <tr>
             <td>6/3x2</td>
-            <td>93.56%</td>
-            <td>74.47%</td>
+	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658604/cct6-3x2_cifar10_best.pth.zip">93.56%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658605/cct6-3x2_cifar100_best.pth.zip">74.47%</a></td>
             <td>3.327M</td>
             <td>0.241G</td>
         </tr>
@@ -192,7 +192,6 @@ convolutional layers.
         </tr>
     </tbody>
 </table>
-
 
 Click to download checkpoints. More checkpoints will be available soon.
 
