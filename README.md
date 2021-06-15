@@ -148,7 +148,7 @@ convolutional layers.
             <td>0.202G</td>
         </tr>
         <tr>
-            <td rowspan=5>CCT</td>
+            <td rowspan=6>CCT</td>
             <td>2/3x2</td>
             <td>89.17%</td>
             <td>66.90%</td>
