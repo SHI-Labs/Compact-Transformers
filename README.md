@@ -37,7 +37,7 @@ strategy and the use of convolutions. We show that compared to CNNs,
 our compact transformers have fewer parameters and MACs,while obtaining
 similar accuracies. Our method is flexible in terms of model size, and can
 have as little as 0.28M parameters and achieve reasonable results. It can
-reach an ac-curacy of 94.72% when training from scratch on CIFAR-10,which is
+reach an accuracy of 94.81% when training from scratch on CIFAR-10,which is
 comparable with modern CNN based approaches,and a significant improvement
 over previous Transformer based models. Our simple and compact design
 democratizes transformers by making them accessible to those equipped
@@ -171,20 +171,28 @@ convolutional layers.
         </tr>
         <tr>
             <td>7/3x2</td>
-            <td>93.65%</td>
-            <td>74.77%</td>
+	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657152/cct7-3x2_cifar10_best.pth.zip">93.83%</a></td>
+	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657154/cct7-3x2_cifar100_best.pth.zip">74.92%</a></td>
             <td>3.853M</td>
             <td>0.275G</td>
         </tr>
         <tr>
             <td>7/3x1</td>
             <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6644400/cct7-3x1_cifar10_best.pth.zip">94.78%</a></b></td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6649937/cct7-3x1_cifar100.pth.zip">77.05%</a></b></td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657226/cct7-3x1_cifar100_best.pth.zip">77.05%</a></b></td>
             <td>3.760M</td>
             <td>0.947G</td>
         </tr>
+        <tr>
+            <td>6/3x1</td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657185/cct6-3x1_cifar10_best.pth.zip">94.81%</a></b></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657221/cct6-3x1_cifar100_best.pth.zip">76.71%</a></td>
+            <td>3.168M</td>
+            <td>0.813G</td>
+        </tr>
     </tbody>
 </table>
+
 
 Click to download checkpoints. More checkpoints will be available soon.
 
