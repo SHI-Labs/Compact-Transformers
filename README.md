@@ -85,12 +85,12 @@ python main.py \
 ```
 
 
-If you would like to run our best running model (CCT-7/3x1) with CIFAR-10 on 
-your machine, please use the following command.
+If you would like to run our best running models (CCT-6/3x1 or CCT-7/3x1)
+with CIFAR-10 on your machine, please use the following command.
 ```bash
 python main.py \
        --dataset cifar10 \
-       --model cct_7 \
+       --model cct_6 \
        --conv-size 3 \
        --conv-layers 1 \
        --warmup 10 \
