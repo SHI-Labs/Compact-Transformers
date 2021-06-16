@@ -120,45 +120,45 @@ convolutional layers.
         <tr>
             <td rowspan=2>ViT-Lite</td>
             <td>7/4</td>
-            <td>91.38%</td>
-            <td>69.75%</td>
+	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666087/vitlite7-4_cifar10.pth.zip">91.38%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666088/vitlite7-4_cifar100.pth.zip">69.75%</a></td>
             <td>3.717M</td>
             <td>0.239G</td>
         </tr>
         <tr>
             <td>6/4</td>
-            <td>90.94%</td>
-            <td>69.20%</td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666085/vitlite6-4_cifar10.pth.zip">90.94%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666086/vitlite6-4_cifar100.pth.zip">69.20%</a></td>
             <td>3.191M</td>
             <td>0.205G</td>
         </tr>
         <tr>
             <td rowspan=2>CVT</td>
             <td>7/4</td>
-            <td>92.43%</td>
-            <td>73.01%</td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666077/cvt7-4_cifar10.pth.zip">92.43%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666078/cvt7-4_cifar100.pth.zip">73.01%</a></td>
             <td>3.717M</td>
             <td>0.236G</td>
         </tr>
         <tr>
             <td>6/4</td>
-            <td>92.58%</td>
-            <td>72.25%</td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666075/cvt6-4_cifar10.pth.zip">92.58%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666076/cvt6-4_cifar100.pth.zip">72.25%</a></td>
             <td>3.190M</td>
             <td>0.202G</td>
         </tr>
         <tr>
             <td rowspan=6>CCT</td>
             <td>2/3x2</td>
-            <td>89.17%</td>
-            <td>66.90%</td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666059/cct2-3x2_cifar10.pth.zip">89.17%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666060/cct2-3x2_cifar100.pth.zip">66.90%</a></td>
             <td><b>0.284M</b></td>
             <td><b>0.033G</b></td>
         </tr>
         <tr>
             <td>4/3x2</td>
-            <td>91.45%</td>
-            <td>70.46%</td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666061/cct4-3x2_cifar10.pth.zip">91.45%</a></td>
+            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666066/cct4-3x2_cifar100.pth.zip">70.46%</a></td>
             <td>0.482M</td>
             <td>0.046G</td>
         </tr>
@@ -193,7 +193,7 @@ convolutional layers.
     </tbody>
 </table>
 
-Click to download checkpoints. More checkpoints will be available soon.
+Click to download checkpoints.
 
 # Citation
 ```bibtex
