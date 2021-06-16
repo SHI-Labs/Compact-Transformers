@@ -5,12 +5,10 @@ from .transformers import TransformerEncoderLayer
 
 
 __all__ = ['cct_2', 'cct_4', 'cct_6', 'cct_7', 'cct_8',
-           'cct_10', 'cct_12', 'cct_24', 'cct_32',
            'cvt_2', 'cvt_4', 'cvt_6', 'cvt_7', 'cvt_8',
-           'cvt_10', 'cvt_12', 'cvt_24', 'cvt_32',
            'vit_lite_2', 'vit_lite_4', 'vit_lite_6',
-           'vit_lite_7', 'vit_lite_8', 'vit_lite_10',
-           'vit_lite_12', 'vit_lite_24', 'vit_lite_32']
+           'vit_lite_7', 'vit_lite_8'
+           ]
 
 
 class Tokenizer(nn.Module):
