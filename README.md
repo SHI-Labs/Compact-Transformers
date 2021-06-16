@@ -64,7 +64,9 @@ parameters.
 
 ![Comparison](images/comparison.png)
 
-# How to run 
+# How to run
+
+## Install locally
 
 Please make sure you're using the latest stable PyTorch version:
 ```bash
@@ -72,6 +74,11 @@ torch==1.8.1
 torchvision==0.8.1
 ```
 Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) page for detailed instructions.
+
+## Using Docker
+There's also a `Dockerfile`, which builds off of the PyTorch image (requires CUDA).
+
+## Training
 
 We recommend starting with our faster version (CCT-2/3x2) which can be run with the
 following command. If you are running on a CPU we recommend this model.
@@ -95,10 +102,21 @@ python main.py \
        --conv-layers 1 \
        --warmup 10 \
        --batch-size 64 \
+       --checkpoint-path /path/to/checkpoint.pth \
        path/to/cifar10
 ```
+## Evaluation
 
-You can also use `evaluate.py` to evaluate the performance of a checkpoint.
+You can use `evaluate.py` to evaluate the performance of a checkpoint.
+```bash
+python main.py \
+       --dataset cifar10 \
+       --model cct_6 \
+       --conv-size 3 \
+       --conv-layers 1 \
+       --checkpoint-path /path/to/checkpoint.pth \
+       path/to/cifar10
+```
 
 # Results
 Type can be read in the format `L/PxC` where `L` is the number of transformer
