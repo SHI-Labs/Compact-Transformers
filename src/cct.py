@@ -335,26 +335,6 @@ def cct_8(*args, **kwargs):
                 *args, **kwargs)
 
 
-def cct_10(*args, **kwargs):
-    return _cct(num_layers=10, num_heads=8, mlp_ratio=3, embedding_dim=512,
-                *args, **kwargs)
-
-
-def cct_12(*args, **kwargs):
-    return _cct(num_layers=12, num_heads=12, mlp_ratio=4, embedding_dim=768,
-                *args, **kwargs)
-
-
-def cct_24(*args, **kwargs):
-    return _cct(num_layers=24, num_heads=16, mlp_ratio=4, embedding_dim=1024,
-                *args, **kwargs)
-
-
-def cct_32(*args, **kwargs):
-    return _cct(num_layers=32, num_heads=16, mlp_ratio=4, embedding_dim=1280,
-                *args, **kwargs)
-
-
 def cvt_2(*args, **kwargs):
     return _cvt(num_layers=2, num_heads=2, mlp_ratio=1, embedding_dim=128,
                 *args, **kwargs)
@@ -380,26 +360,6 @@ def cvt_8(*args, **kwargs):
                 *args, **kwargs)
 
 
-def cvt_10(*args, **kwargs):
-    return _cvt(num_layers=10, num_heads=8, mlp_ratio=3, embedding_dim=512,
-                *args, **kwargs)
-
-
-def cvt_12(*args, **kwargs):
-    return _cvt(num_layers=12, num_heads=12, mlp_ratio=4, embedding_dim=768,
-                *args, **kwargs)
-
-
-def cvt_24(*args, **kwargs):
-    return _cvt(num_layers=24, num_heads=16, mlp_ratio=4, embedding_dim=1024,
-                *args, **kwargs)
-
-
-def cvt_32(*args, **kwargs):
-    return _cvt(num_layers=32, num_heads=16, mlp_ratio=4, embedding_dim=1280,
-                *args, **kwargs)
-
-
 def vit_lite_2(*args, **kwargs):
     return _vit_lite(num_layers=2, num_heads=2, mlp_ratio=1, embedding_dim=128,
                      *args, **kwargs)
@@ -422,24 +382,4 @@ def vit_lite_7(*args, **kwargs):
 
 def vit_lite_8(*args, **kwargs):
     return _vit_lite(num_layers=8, num_heads=4, mlp_ratio=2, embedding_dim=256,
-                     *args, **kwargs)
-
-
-def vit_lite_10(*args, **kwargs):
-    return _vit_lite(num_layers=10, num_heads=8, mlp_ratio=3, embedding_dim=512,
-                     *args, **kwargs)
-
-
-def vit_lite_12(*args, **kwargs):
-    return _vit_lite(num_layers=12, num_heads=12, mlp_ratio=4, embedding_dim=768,
-                     *args, **kwargs)
-
-
-def vit_lite_24(*args, **kwargs):
-    return _vit_lite(num_layers=24, num_heads=16, mlp_ratio=4, embedding_dim=1024,
-                     *args, **kwargs)
-
-
-def vit_lite_32(*args, **kwargs):
-    return _vit_lite(num_layers=32, num_heads=16, mlp_ratio=4, embedding_dim=1280,
                      *args, **kwargs)
