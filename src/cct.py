@@ -22,7 +22,8 @@ class Tokenizer(nn.Module):
                  n_output_channels=64,
                  in_planes=64,
                  activation=None,
-                 max_pool=True):
+                 max_pool=True,
+                 conv_bias=False):
         super(Tokenizer, self).__init__()
 
         n_filter_list = [n_input_channels] + \
@@ -34,7 +35,7 @@ class Tokenizer(nn.Module):
                 nn.Conv2d(n_filter_list[i], n_filter_list[i + 1],
                           kernel_size=(kernel_size, kernel_size),
                           stride=(stride, stride),
-                          padding=(padding, padding), bias=False),
+                          padding=(padding, padding), bias=conv_bias),
                 nn.Identity() if activation is None else activation(),
                 nn.MaxPool2d(kernel_size=pooling_kernel_size,
                              stride=pooling_stride,
@@ -175,7 +176,8 @@ class ViTLite(nn.Module):
                                    padding=0,
                                    max_pool=False,
                                    activation=None,
-                                   n_conv_layers=1)
+                                   n_conv_layers=1,
+                                   conv_bias=True)
 
         self.classifier = TransformerClassifier(
             sequence_length=self.tokenizer.sequence_length(n_channels=n_input_channels,
@@ -210,7 +212,8 @@ class CVT(nn.Module):
                                    padding=0,
                                    max_pool=False,
                                    activation=None,
-                                   n_conv_layers=1)
+                                   n_conv_layers=1,
+                                   conv_bias=True)
 
         self.classifier = TransformerClassifier(
             sequence_length=self.tokenizer.sequence_length(n_channels=n_input_channels,
@@ -253,7 +256,8 @@ class CCT(nn.Module):
                                    pooling_padding=pooling_padding,
                                    max_pool=True,
                                    activation=nn.ReLU,
-                                   n_conv_layers=n_conv_layers)
+                                   n_conv_layers=n_conv_layers,
+                                   conv_bias=False)
 
         self.classifier = TransformerClassifier(
             sequence_length=self.tokenizer.sequence_length(n_channels=n_input_channels,
