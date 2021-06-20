@@ -109,7 +109,7 @@ python main.py \
 
 You can use `evaluate.py` to evaluate the performance of a checkpoint.
 ```bash
-python main.py \
+python evaluate.py \
        --dataset cifar10 \
        --model cct_6 \
        --conv-size 3 \
