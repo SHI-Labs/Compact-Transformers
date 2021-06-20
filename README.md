@@ -68,10 +68,10 @@ parameters.
 
 ## Install locally
 
-Please make sure you're using the latest stable PyTorch version:
+Please make sure you're using the following PyTorch version:
 ```bash
 torch==1.8.1
-torchvision==0.8.1
+torchvision==0.9.1
 ```
 Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) page for detailed instructions.
 
