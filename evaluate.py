@@ -64,14 +64,14 @@ def init_parser():
     parser.add_argument('-m', '--model',
                         type=str.lower,
                         choices=model_names,
-                        default='cct_7', dest='model')
+                        default='cct_2', dest='model')
 
     parser.add_argument('-p', '--positional-embedding',
                         type=str.lower,
                         choices=['learnable', 'sine', 'none'],
                         default='learnable', dest='positional_embedding')
 
-    parser.add_argument('--conv-layers', default=1, type=int,
+    parser.add_argument('--conv-layers', default=2, type=int,
                         help='number of convolutional layers (cct only)')
 
     parser.add_argument('--conv-size', default=3, type=int,
@@ -84,6 +84,9 @@ def init_parser():
 
     parser.add_argument('--no-cuda', action='store_true',
                         help='disable cuda')
+
+    parser.add_argument('--download', action='store_true',
+                        help='download dataset (or verify if already downloaded)')
 
     return parser
 
@@ -102,7 +105,7 @@ def main():
                                             kernel_size=args.conv_size,
                                             patch_size=args.patch_size)
 
-    model.load_state_dict(torch.load(args.checkpoint_path))
+    model.load_state_dict(torch.load(args.checkpoint_path, map_location='cpu'))
     print("Loaded checkpoint.")
 
     normalize = [transforms.Normalize(mean=img_mean, std=img_std)]
@@ -112,7 +115,7 @@ def main():
         model.cuda(args.gpu_id)
 
     val_dataset = datasets.__dict__[args.dataset.upper()](
-        root=args.data, train=False, download=False, transform=transforms.Compose([
+        root=args.data, train=False, download=args.download, transform=transforms.Compose([
             transforms.Resize(img_size),
             transforms.ToTensor(),
             *normalize,
