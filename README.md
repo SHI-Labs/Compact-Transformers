@@ -259,7 +259,7 @@ Click to download checkpoints.
             <td>17.6G</td>
         </tr>
         <tr>
-            <td rowspan=6>CCT</td>
+            <td rowspan=3>CCT</td>
             <td>14/7x2</td>
 	        <td>384</td>
             <td>200</td>
@@ -287,6 +287,41 @@ Click to download checkpoints.
 </table>
 
 Please note that we used [Ross Wightman's ImageNet training script](https://github.com/rwightman/pytorch-image-models) to train these.
+
+## NLP Results
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td> 
+            <td><b>Type</b></td>
+            <td><b>AGNews</b></td>
+            <td><b>TREC</b></td>
+            <td><b># Params</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3>CCT</td>
+            <td>2/4x1</td>
+            <td>93.80%</td>
+            <td>91.42%</td>
+            <td>0.337M</td>
+        </tr>
+        <tr>
+            <td>4/4x1</td>
+            <td>93.09%</td>
+            <td>93.20%</td>
+            <td>0.526M</td>
+        </tr>
+        <tr>
+            <td>6/4x1</td>
+            <td>92.86%</td>
+            <td>92.96%</td>
+            <td>3.307M</td>
+        </tr>
+    </tbody>
+</table>
 
 # Citation
 ```bibtex
