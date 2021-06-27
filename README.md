@@ -269,16 +269,16 @@ Click to download checkpoints.
         </tr>
         <tr>
             <td>14/7x2</td>
-	        <td>224</td>
-            <td>200</td>
+	    <td>224</td>
+            <td>310</td>
             <td>80.04%</td>
             <td>22.29M</td>
             <td>5.11G</td>
         </tr>
         <tr>
             <td>16/7x2</td>
-	        <td>224</td>
-            <td>200</td>
+	    <td>224</td>
+            <td>310</td>
             <td>80.20%</td>
             <td>25.32M</td>
             <td>5.69G</td>
@@ -286,6 +286,7 @@ Click to download checkpoints.
     </tbody>
 </table>
 
+Please note that we used [Ross Wightman's ImageNet training script](https://github.com/rwightman/pytorch-image-models) to train these.
 
 # Citation
 ```bibtex
