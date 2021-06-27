@@ -333,6 +333,16 @@ def cct_8(*args, **kwargs):
                 *args, **kwargs)
 
 
+def cct_14(*args, **kwargs):
+    return _cct(num_layers=14, num_heads=6, mlp_ratio=3, embedding_dim=384,
+                *args, **kwargs)
+
+
+def cct_16(*args, **kwargs):
+    return _cct(num_layers=16, num_heads=6, mlp_ratio=3, embedding_dim=384,
+                *args, **kwargs)
+
+
 def cvt_2(*args, **kwargs):
     return _cvt(num_layers=2, num_heads=2, mlp_ratio=1, embedding_dim=128,
                 *args, **kwargs)

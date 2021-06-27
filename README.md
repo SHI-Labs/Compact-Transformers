@@ -37,7 +37,7 @@ strategy and the use of convolutions. We show that compared to CNNs,
 our compact transformers have fewer parameters and MACs,while obtaining
 similar accuracies. Our method is flexible in terms of model size, and can
 have as little as 0.28M parameters and achieve reasonable results. It can
-reach an accuracy of 94.81% when training from scratch on CIFAR-10,which is
+reach an accuracy of 95.29% when training from scratch on CIFAR-10,which is
 comparable with modern CNN based approaches,and a significant improvement
 over previous Transformer based models. Our simple and compact design
 democratizes transformers by making them accessible to those equipped
@@ -123,11 +123,14 @@ Type can be read in the format `L/PxC` where `L` is the number of transformer
 layers, `P` is the patch/convolution size, and `C` (CCT only) is the number of
 convolutional layers.
 
+## CIFAR-10 and CIFAR-100
+
 <table style="width:100%">
     <thead>
         <tr>
             <td><b>Model</b></td> 
             <td><b>Type</b></td> 
+            <td><b>Epochs</b></td> 
             <td><b>CIFAR-10</b></td> 
             <td><b>CIFAR-100</b></td> 
             <td><b># Params</b></td> 
@@ -138,6 +141,7 @@ convolutional layers.
         <tr>
             <td rowspan=2>ViT-Lite</td>
             <td>7/4</td>
+            <td>200</td>
 	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666087/vitlite7-4_cifar10.pth.zip">91.38%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666088/vitlite7-4_cifar100.pth.zip">69.75%</a></td>
             <td>3.717M</td>
@@ -145,6 +149,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>6/4</td>
+            <td>200</td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666085/vitlite6-4_cifar10.pth.zip">90.94%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666086/vitlite6-4_cifar100.pth.zip">69.20%</a></td>
             <td>3.191M</td>
@@ -153,6 +158,7 @@ convolutional layers.
         <tr>
             <td rowspan=2>CVT</td>
             <td>7/4</td>
+            <td>200</td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666077/cvt7-4_cifar10.pth.zip">92.43%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666078/cvt7-4_cifar100.pth.zip">73.01%</a></td>
             <td>3.717M</td>
@@ -160,14 +166,16 @@ convolutional layers.
         </tr>
         <tr>
             <td>6/4</td>
+            <td>200</td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666075/cvt6-4_cifar10.pth.zip">92.58%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666076/cvt6-4_cifar100.pth.zip">72.25%</a></td>
             <td>3.190M</td>
             <td>0.202G</td>
         </tr>
         <tr>
-            <td rowspan=6>CCT</td>
+            <td rowspan=7>CCT</td>
             <td>2/3x2</td>
+            <td>200</td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666059/cct2-3x2_cifar10.pth.zip">89.17%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666060/cct2-3x2_cifar100.pth.zip">66.90%</a></td>
             <td><b>0.284M</b></td>
@@ -175,6 +183,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>4/3x2</td>
+            <td>200</td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666061/cct4-3x2_cifar10.pth.zip">91.45%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666066/cct4-3x2_cifar100.pth.zip">70.46%</a></td>
             <td>0.482M</td>
@@ -182,6 +191,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>6/3x2</td>
+            <td>200</td>
 	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658604/cct6-3x2_cifar10_best.pth.zip">93.56%</a></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658605/cct6-3x2_cifar100_best.pth.zip">74.47%</a></td>
             <td>3.327M</td>
@@ -189,6 +199,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>7/3x2</td>
+            <td>200</td>
 	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657152/cct7-3x2_cifar10_best.pth.zip">93.83%</a></td>
 	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657154/cct7-3x2_cifar100_best.pth.zip">74.92%</a></td>
             <td>3.853M</td>
@@ -196,6 +207,7 @@ convolutional layers.
         </tr>
         <tr>
             <td>7/3x1</td>
+            <td>200</td>
             <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6644400/cct7-3x1_cifar10_best.pth.zip">94.78%</a></b></td>
             <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657226/cct7-3x1_cifar100_best.pth.zip">77.05%</a></b></td>
             <td>3.760M</td>
@@ -203,8 +215,17 @@ convolutional layers.
         </tr>
         <tr>
             <td>6/3x1</td>
+            <td>200</td>
             <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657185/cct6-3x1_cifar10_best.pth.zip">94.81%</a></b></td>
             <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657221/cct6-3x1_cifar100_best.pth.zip">76.71%</a></td>
+            <td>3.168M</td>
+            <td>0.813G</td>
+        </tr>
+        <tr>
+            <td>6/3x1</td>
+            <td>500</td>
+            <td><b><a href="#">95.29%</a></b></td>
+            <td>-</td>
             <td>3.168M</td>
             <td>0.813G</td>
         </tr>
@@ -212,6 +233,59 @@ convolutional layers.
 </table>
 
 Click to download checkpoints.
+
+## ImageNet
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td> 
+            <td><b>Type</b></td> 
+            <td><b>Resolution</b></td> 
+            <td><b>Epochs</b></td> 
+            <td><b>Top-1 Accuracy</b></td>
+            <td><b># Params</b></td> 
+            <td><b>MACs</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1>ViT</td>
+            <td>12/16</td>
+	        <td>384</td>
+	        <td>300</td>
+            <td>77.91%</td>
+            <td>86.8M</td>
+            <td>17.6G</td>
+        </tr>
+        <tr>
+            <td rowspan=6>CCT</td>
+            <td>14/7x2</td>
+	        <td>384</td>
+            <td>200</td>
+            <td>78.77%</td>
+            <td>22.51M</td>
+            <td>15.02G</td>
+        </tr>
+        <tr>
+            <td>14/7x2</td>
+	        <td>224</td>
+            <td>200</td>
+            <td>80.04%</td>
+            <td>22.29M</td>
+            <td>5.11G</td>
+        </tr>
+        <tr>
+            <td>16/7x2</td>
+	        <td>224</td>
+            <td>200</td>
+            <td>80.20%</td>
+            <td>25.32M</td>
+            <td>5.69G</td>
+        </tr>
+    </tbody>
+</table>
+
 
 # Citation
 ```bibtex
