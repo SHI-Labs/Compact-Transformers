@@ -259,17 +259,9 @@ Click to download checkpoints.
             <td>17.6G</td>
         </tr>
         <tr>
-            <td rowspan=3>CCT</td>
+            <td rowspan=2>CCT</td>
             <td>14/7x2</td>
-	        <td>384</td>
-            <td>200</td>
-            <td>78.77%</td>
-            <td>22.51M</td>
-            <td>15.02G</td>
-        </tr>
-        <tr>
-            <td>14/7x2</td>
-	    <td>224</td>
+	        <td>224</td>
             <td>310</td>
             <td>80.04%</td>
             <td>22.29M</td>
@@ -277,7 +269,7 @@ Click to download checkpoints.
         </tr>
         <tr>
             <td>16/7x2</td>
-	    <td>224</td>
+	        <td>224</td>
             <td>310</td>
             <td>80.20%</td>
             <td>25.32M</td>
