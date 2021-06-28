@@ -260,18 +260,18 @@ Click to download checkpoints.
         </tr>
         <tr>
             <td rowspan=2>CCT</td>
-            <td>14/7x2</td>
+            <td>14t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td>80.04%</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14-7x2_imagenet_best.pth.zip">80.04%</a></td>
             <td>22.29M</td>
             <td>5.11G</td>
         </tr>
         <tr>
-            <td>16/7x2</td>
+            <td>16t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td>80.20%</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best.pth.zip">80.20%</a></td>
             <td>25.32M</td>
             <td>5.69G</td>
         </tr>
