@@ -224,8 +224,8 @@ convolutional layers.
         <tr>
             <td>6/3x1</td>
             <td>500</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6722440/cct6-3x2_cifar10_500.pth.zip">95.29%</a></b></td>
-            <td>-</td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730781/cct6-3x1_cifar10_500.pth.zip">95.29%</a></b></td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730783/cct6-3x1_cifar100_500.pth.zip">77.31%</a></td>
             <td>3.168M</td>
             <td>0.813G</td>
         </tr>
