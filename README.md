@@ -271,7 +271,7 @@ Click to download checkpoints.
             <td>16t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best.pth.zip">80.20%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best_8028.pth.zip">80.28%</a></td>
             <td>25.32M</td>
             <td>5.69G</td>
         </tr>
