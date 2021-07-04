@@ -78,7 +78,21 @@ Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) p
 ## Using Docker
 There's also a `Dockerfile`, which builds off of the PyTorch image (requires CUDA).
 
-## Training
+
+# Other implementations
+
+## vit-pytorch
+
+CCT is also available through [Phil Wang](https://github.com/lucidrains)'s [vit-pytorch](https://github.com/lucidrains/vit-pytorch):
+
+```bash
+pip install vit-pytorch
+```
+
+## Keras
+Check out [Compact Convolutional Transformers on keras.io](https://keras.io/examples/vision/cct/) by [Sayak Paul](https://github.com/sayakpaul).
+
+# Training
 
 We recommend starting with our faster version (CCT-2/3x2) which can be run with the
 following command. If you are running on a CPU we recommend this model.
