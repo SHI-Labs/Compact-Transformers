@@ -20,6 +20,14 @@ UIUC<sup>[2]</sup>, and Picsart AI Research (PAIR)<sup>[3]</sup>
 
 ![model-sym](images/model_sym.png)
 
+## Other implementations & resources
+**[PyTorch blog]**: check out our [official blog post with PyTorch](https://medium.com/pytorch/training-compact-transformers-from-scratch-in-30-minutes-with-pytorch-ff5c21668ed5) to learn more about our work and vision transformers in general.
+
+**[Keras]**: check out [Compact Convolutional Transformers on keras.io](https://keras.io/examples/vision/cct/) by [Sayak Paul](https://github.com/sayakpaul).
+
+**[vit-pytorch]**: CCT is also available through [Phil Wang](https://github.com/lucidrains)'s [vit-pytorch](https://github.com/lucidrains/vit-pytorch), simply use ```pip install vit-pytorch```
+
+
 # Abstract
 With the rise of Transformers as the standard for language
 processing, and their advancements in computer vi-sion, along with their
@@ -78,21 +86,7 @@ Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) p
 ## Using Docker
 There's also a `Dockerfile`, which builds off of the PyTorch image (requires CUDA).
 
-
-# Other implementations
-
-## vit-pytorch
-
-CCT is also available through [Phil Wang](https://github.com/lucidrains)'s [vit-pytorch](https://github.com/lucidrains/vit-pytorch):
-
-```bash
-pip install vit-pytorch
-```
-
-## Keras
-Check out [Compact Convolutional Transformers on keras.io](https://keras.io/examples/vision/cct/) by [Sayak Paul](https://github.com/sayakpaul).
-
-# Training
+## Training
 
 We recommend starting with our faster version (CCT-2/3x2) which can be run with the
 following command. If you are running on a CPU we recommend this model.
