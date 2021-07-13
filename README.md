@@ -20,6 +20,14 @@ UIUC<sup>[2]</sup>, and Picsart AI Research (PAIR)<sup>[3]</sup>
 
 ![model-sym](images/model_sym.png)
 
+## Other implementations & resources
+**[PyTorch blog]**: check out our [official blog post with PyTorch](https://medium.com/pytorch/training-compact-transformers-from-scratch-in-30-minutes-with-pytorch-ff5c21668ed5) to learn more about our work and vision transformers in general.
+
+**[Keras]**: check out [Compact Convolutional Transformers on keras.io](https://keras.io/examples/vision/cct/) by [Sayak Paul](https://github.com/sayakpaul).
+
+**[vit-pytorch]**: CCT is also available through [Phil Wang](https://github.com/lucidrains)'s [vit-pytorch](https://github.com/lucidrains/vit-pytorch), simply use ```pip install vit-pytorch```
+
+
 # Abstract
 With the rise of Transformers as the standard for language
 processing, and their advancements in computer vi-sion, along with their
@@ -224,8 +232,8 @@ convolutional layers.
         <tr>
             <td>6/3x1</td>
             <td>500</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6722440/cct6-3x2_cifar10_500.pth.zip">95.29%</a></b></td>
-            <td>-</td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730781/cct6-3x1_cifar10_500.pth.zip">95.29%</a></b></td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730783/cct6-3x1_cifar100_500.pth.zip">77.31%</a></td>
             <td>3.168M</td>
             <td>0.813G</td>
         </tr>
@@ -271,7 +279,7 @@ Click to download checkpoints.
             <td>16t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best.pth.zip">80.20%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best_8028.pth.zip">80.28%</a></td>
             <td>25.32M</td>
             <td>5.69G</td>
         </tr>
