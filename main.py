@@ -11,12 +11,12 @@ import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
-from src import cct as cct_models
+import src as models
 from utils.losses import LabelSmoothingCrossEntropy
 
-model_names = sorted(name for name in cct_models.__dict__
+model_names = sorted(name for name in models.__dict__
                      if name.islower() and not name.startswith("_")
-                     and callable(cct_models.__dict__[name]))
+                     and callable(models.__dict__[name]))
 
 best_acc1 = 0
 
@@ -116,12 +116,12 @@ def main():
     num_classes = DATASETS[args.dataset]['num_classes']
     img_mean, img_std = DATASETS[args.dataset]['mean'], DATASETS[args.dataset]['std']
 
-    model = cct_models.__dict__[args.model](img_size=img_size,
-                                            num_classes=num_classes,
-                                            positional_embedding=args.positional_embedding,
-                                            n_conv_layers=args.conv_layers,
-                                            kernel_size=args.conv_size,
-                                            patch_size=args.patch_size)
+    model = models.__dict__[args.model](img_size=img_size,
+                                        num_classes=num_classes,
+                                        positional_embedding=args.positional_embedding,
+                                        n_conv_layers=args.conv_layers,
+                                        kernel_size=args.conv_size,
+                                        patch_size=args.patch_size)
 
     criterion = LabelSmoothingCrossEntropy()
 
@@ -235,7 +235,7 @@ def cls_train(train_loader, model, criterion, optimizer, epoch, args):
 
         if args.print_freq >= 0 and i % args.print_freq == 0:
             avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-            print(f'[Epoch {epoch+1}][Train][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
+            print(f'[Epoch {epoch + 1}][Train][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
 
 
 def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None):
@@ -258,11 +258,11 @@ def cls_validate(val_loader, model, criterion, args, epoch=None, time_begin=None
 
             if args.print_freq >= 0 and i % args.print_freq == 0:
                 avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
-                print(f'[Epoch {epoch+1}][Eval][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
+                print(f'[Epoch {epoch + 1}][Eval][{i}] \t Loss: {avg_loss:.4e} \t Top-1 {avg_acc1:6.2f}')
 
     avg_loss, avg_acc1 = (loss_val / n), (acc1_val / n)
     total_mins = -1 if time_begin is None else (time() - time_begin) / 60
-    print(f'[Epoch {epoch+1}] \t \t Top-1 {avg_acc1:6.2f} \t \t Time: {total_mins:.2f}')
+    print(f'[Epoch {epoch + 1}] \t \t Top-1 {avg_acc1:6.2f} \t \t Time: {total_mins:.2f}')
 
     return avg_acc1
 

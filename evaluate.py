@@ -11,12 +11,11 @@ import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
-from src import cct as cct_models
+import src as models
 
-model_names = sorted(name for name in cct_models.__dict__
+model_names = sorted(name for name in models.__dict__
                      if name.islower() and not name.startswith("_")
-                     and callable(cct_models.__dict__[name]))
-
+                     and callable(models.__dict__[name]))
 
 DATASETS = {
     'cifar10': {
@@ -98,12 +97,12 @@ def main():
     num_classes = DATASETS[args.dataset]['num_classes']
     img_mean, img_std = DATASETS[args.dataset]['mean'], DATASETS[args.dataset]['std']
 
-    model = cct_models.__dict__[args.model](img_size=img_size,
-                                            num_classes=num_classes,
-                                            positional_embedding=args.positional_embedding,
-                                            n_conv_layers=args.conv_layers,
-                                            kernel_size=args.conv_size,
-                                            patch_size=args.patch_size)
+    model = models.__dict__[args.model](img_size=img_size,
+                                        num_classes=num_classes,
+                                        positional_embedding=args.positional_embedding,
+                                        n_conv_layers=args.conv_layers,
+                                        kernel_size=args.conv_size,
+                                        patch_size=args.patch_size)
 
     model.load_state_dict(torch.load(args.checkpoint_path, map_location='cpu'))
     print("Loaded checkpoint.")
