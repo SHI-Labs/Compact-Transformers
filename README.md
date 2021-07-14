@@ -294,7 +294,7 @@ Please note that we used [Ross Wightman's ImageNet training script](https://gith
     <thead>
         <tr>
             <td><b>Model</b></td> 
-            <td><b>Type</b></td>
+            <td><b>Kernel size</b></td>
             <td><b>AGNews</b></td>
             <td><b>TREC</b></td>
             <td><b># Params</b></td>
@@ -302,26 +302,65 @@ Please note that we used [Ross Wightman's ImageNet training script](https://gith
     </thead>
     <tbody>
         <tr>
-            <td rowspan=3>CCT</td>
-            <td>2/4x1</td>
+            <td rowspan=3>CCT-2</td>
+            <td>1</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-1_agnews_93.45.pth">93.45%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-1_trec_91.00.pth">91.00%</a></td>
+            <td>0.238M</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-2_agnews_93.51.pth">93.51%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-2_trec_91.80.pth">91.80%</a></td>
+            <td>0.276M</td>
+        </tr>
+        <tr>
+            <td>4</td>
             <td>93.80%</td>
-            <td>91.42%</td>
-            <td>0.337M</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-4_trec_91.00.pth">91.00%</a></td>
+            <td>0.353M</td>
         </tr>
         <tr>
-            <td>4/4x1</td>
+            <td rowspan=3>CCT-4</td>
+            <td>1</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-1_agnews_93.55.pth">93.55%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-1_trec_91.80.pth">91.80%</a></td>
+            <td>0.436M</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-2_agnews_93.24.pth">93.24%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-2_trec_93.60.pth">93.60%</a></td>
+            <td>0.475M</td>
+        </tr>
+        <tr>
+            <td>4</td>
             <td>93.09%</td>
-            <td>93.20%</td>
-            <td>0.526M</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-4_trec_93.00.pth">93.00%</a></td>
+            <td>0.551M</td>
         </tr>
         <tr>
-            <td>6/4x1</td>
-            <td>92.86%</td>
-            <td>92.96%</td>
-            <td>3.307M</td>
+            <td rowspan=3>CCT-6</td>
+            <td>1</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-1_agnews_93.78.pth">93.78%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-1_trec_91.60.pth">91.60%</a></td>
+            <td>3.237M</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-2_agnews_93.33.pth">93.33%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-2_trec_92.20.pth">92.20%</a></td>
+            <td>3.313M</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-4_agnews_92.95.pth">92.95%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-4_trec_92.80.pth">92.80%</a></td>
+            <td>3.467M</td>
         </tr>
     </tbody>
 </table>
+More models are being uploaded.
 
 # Citation
 ```bibtex
