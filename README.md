@@ -233,14 +233,48 @@ convolutional layers.
             <td>6/3x1</td>
             <td>500</td>
             <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730781/cct6-3x1_cifar10_500.pth.zip">95.29%</a></b></td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730783/cct6-3x1_cifar100_500.pth.zip">77.31%</a></td>
+            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730783/cct6-3x1_cifar100_500.pth.zip">77.31%</a></b></td>
             <td>3.168M</td>
             <td>0.813G</td>
         </tr>
     </tbody>
 </table>
 
-Click to download checkpoints.
+### Randaugment + Mixup + CutMix
+We trained the following using [timm](https://github.com/rwightman/pytorch-image-models).
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td>
+            <td><b>Epochs</b></td> 
+            <td><b>PE</b></td>
+            <td><b>CIFAR-10</b></td> 
+            <td><b>CIFAR-100</b></td> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3>CCT-7/3x1</td>
+            <td>300</td>
+            <td>Learnable</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_300epochs_96.53.pth">96.53%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar100_300epochs_80.92.pth">80.92%</a></td>
+        </tr>
+        <tr>
+            <td>1500</td>
+            <td>Sinusoidal</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_1500epochs_97.48.pth">97.48%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar100_1500epochs_82.72.pth">82.72%</a></td>
+        </tr>
+        <tr>
+            <td>5000</td>
+            <td>Sinusoidal</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_5000epochs_98.00.pth">98.00%</a></td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
 
 ## ImageNet
 
@@ -258,7 +292,7 @@ Click to download checkpoints.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=1>ViT</td>
+            <td rowspan=1><a href="https://github.com/google-research/vision_transformer/">ViT</a></td>
             <td>12/16</td>
 	        <td>384</td>
 	        <td>300</td>
@@ -271,17 +305,17 @@ Click to download checkpoints.
             <td>14t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14-7x2_imagenet_best.pth.zip">80.04%</a></td>
-            <td>22.29M</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14t-7x2_imagenet_80.67.pth">80.67%</a></td>
+            <td>22.36M</td>
             <td>5.11G</td>
         </tr>
         <tr>
-            <td>16t/7x2</td>
-	        <td>224</td>
+            <td>14t/7x2</td>
+	        <td>384</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct16-7x2_imagenet_best_8028.pth.zip">80.28%</a></td>
-            <td>25.32M</td>
-            <td>5.69G</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14t-7x2_imagenet384_finetune_82.71.pth">82.71%</a></td>
+            <td>22.51M</td>
+            <td>15.02G</td>
         </tr>
     </tbody>
 </table>
