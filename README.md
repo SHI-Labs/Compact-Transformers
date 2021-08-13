@@ -29,28 +29,26 @@ UIUC<sup>[2]</sup>, and Picsart AI Research (PAIR)<sup>[3]</sup>
 
 
 # Abstract
-With the rise of Transformers as the standard for language
-processing, and their advancements in computer vi-sion, along with their
-unprecedented size and amounts of training data, many have come to believe
-that they are not suitable for small sets of data. This trend leads
-to great concerns, including but not limited to: limited availability of
-data in certain scientific domains and the exclusion ofthose with limited
-resource from research in the field. In this paper, we dispel the myth that
-transformers are “data-hungry” and therefore can only be applied to large
-sets of data. We show for the first time that with the right size
-and tokenization, transformers can perform head-to-head with state-of-the-art
-CNNs on small datasets. Our model eliminates the requirement for class
-token and positional embed-dings through a novel sequence pooling
-strategy and the use of convolutions. We show that compared to CNNs,
-our compact transformers have fewer parameters and MACs,while obtaining
-similar accuracies. Our method is flexible in terms of model size, and can
-have as little as 0.28M parameters and achieve reasonable results. It can
-reach an accuracy of 95.29% when training from scratch on CIFAR-10,which is
-comparable with modern CNN based approaches,and a significant improvement
-over previous Transformer based models. Our simple and compact design
-democratizes transformers by making them accessible to those equipped
-with basic computing resources and/or dealing with important small
-datasets.
+With the rise of Transformers as the standard for language processing, 
+and their advancements in computer vision, along with their unprecedented size 
+and amounts of training data, many have come to believe that they are not suitable 
+for small sets of data. This trend leads to great concerns, including but 
+not limited to: limited availability of data in certain scientific domains and the 
+exclusion of those with limited resource from research in the field. In this paper, 
+we dispel the myth that transformers are “data hungry” and therefore can only be 
+applied to large sets of data. We show for the first time that with the right size and 
+tokenization, transformers can perform head-to-head with state-of-the-art CNNs on 
+small datasets, often with bet-ter accuracy and fewer parameters. Our model eliminates 
+the requirement for class token and positional embeddings through a novel sequence 
+pooling strategy and the use of convolution/s. It is flexible in terms of model size, 
+and can have as little as 0.28M parameters while achieving good results. Our model can 
+reach 98.00% accuracy when training from scratch on CIFAR-10, which is a significant 
+improvement over previous Transformer based models. It also outperforms many modern CNN 
+based approaches, such as ResNet, and even some recent NAS-based approaches,such as 
+Proxyless-NAS. Our simple and compact design democratizes transformers by making them 
+accessible to those with limited computing resources and/or dealing with small datasets. 
+Our method also works on larger datasets, such as ImageNet (82.71% accuracy with 29% parameters 
+of ViT),and NLP tasks as well.
  
 #### ViT-Lite: Lightweight ViT 
 Different from [ViT](https://arxiv.org/abs/2010.11929) we show that <i>an image 
