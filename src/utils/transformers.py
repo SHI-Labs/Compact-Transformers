@@ -138,9 +138,9 @@ class TransformerClassifier(Module):
                  num_heads=12,
                  mlp_ratio=4.0,
                  num_classes=1000,
-                 dropout_rate=0.1,
+                 dropout=0.1,
                  attention_dropout=0.1,
-                 stochastic_depth_rate=0.1,
+                 stochastic_depth=0.1,
                  positional_embedding='sine',
                  sequence_length=None,
                  *args, **kwargs):
@@ -174,11 +174,11 @@ class TransformerClassifier(Module):
         else:
             self.positional_emb = None
 
-        self.dropout = Dropout(p=dropout_rate)
-        dpr = [x.item() for x in torch.linspace(0, stochastic_depth_rate, num_layers)]
+        self.dropout = Dropout(p=dropout)
+        dpr = [x.item() for x in torch.linspace(0, stochastic_depth, num_layers)]
         self.blocks = ModuleList([
             TransformerEncoderLayer(d_model=embedding_dim, nhead=num_heads,
-                                    dim_feedforward=dim_feedforward, dropout=dropout_rate,
+                                    dim_feedforward=dim_feedforward, dropout=dropout,
                                     attention_dropout=attention_dropout, drop_path_rate=dpr[i])
             for i in range(num_layers)])
         self.norm = LayerNorm(embedding_dim)
@@ -238,9 +238,9 @@ class MaskedTransformerClassifier(Module):
                  num_heads=12,
                  mlp_ratio=4.0,
                  num_classes=1000,
-                 dropout_rate=0.1,
+                 dropout=0.1,
                  attention_dropout=0.1,
-                 stochastic_depth_rate=0.1,
+                 stochastic_depth=0.1,
                  positional_embedding='sine',
                  seq_len=None,
                  *args, **kwargs):
@@ -277,11 +277,11 @@ class MaskedTransformerClassifier(Module):
         else:
             self.positional_emb = None
 
-        self.dropout = Dropout(p=dropout_rate)
-        dpr = [x.item() for x in torch.linspace(0, stochastic_depth_rate, num_layers)]
+        self.dropout = Dropout(p=dropout)
+        dpr = [x.item() for x in torch.linspace(0, stochastic_depth, num_layers)]
         self.blocks = ModuleList([
             MaskedTransformerEncoderLayer(d_model=embedding_dim, nhead=num_heads,
-                                          dim_feedforward=dim_feedforward, dropout=dropout_rate,
+                                          dim_feedforward=dim_feedforward, dropout=dropout,
                                           attention_dropout=attention_dropout, drop_path_rate=dpr[i])
             for i in range(num_layers)])
         self.norm = LayerNorm(embedding_dim)

@@ -43,7 +43,7 @@ class CCT(nn.Module):
                                                            width=img_size),
             embedding_dim=embedding_dim,
             seq_pool=True,
-            dropout_rate=0.,
+            dropout=0.,
             attention_dropout=0.1,
             stochastic_depth=0.1,
             *args, **kwargs)

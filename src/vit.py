@@ -36,7 +36,7 @@ class ViTLite(nn.Module):
                                                            width=img_size),
             embedding_dim=embedding_dim,
             seq_pool=False,
-            dropout_rate=0.1,
+            dropout=0.1,
             attention_dropout=0.,
             stochastic_depth=0.,
             *args, **kwargs)
