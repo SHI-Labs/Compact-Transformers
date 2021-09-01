@@ -274,6 +274,36 @@ We trained the following using [timm](https://github.com/rwightman/pytorch-image
     </tbody>
 </table>
 
+## Flowers-102
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td>
+            <td><b>Pre-training</b></td>
+            <td><b>PE</b></td>
+            <td><b>Image Size</b></td>
+            <td><b>Accuracy</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CCT-7/7x2</td>
+            <td>None</td>
+            <td>Sinusoidal</td>
+            <td>224x224</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct_7-7x2_flowers.pth">97.19%</a></td>
+        </tr>
+        <tr>
+            <td>CCT-7/7x2</td>
+            <td>ImageNet-1k</td>
+            <td>Learnable</td>
+            <td>384x384</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct_14-7x2_flowers_finetuned.pth">99.76%</a></td>
+        </tr>
+    </tbody>
+</table>
+
 ## ImageNet
 
 <table style="width:100%">
