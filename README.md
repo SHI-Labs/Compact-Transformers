@@ -295,7 +295,7 @@ We trained the following using [timm](https://github.com/rwightman/pytorch-image
             <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct_7-7x2_flowers.pth">97.19%</a></td>
         </tr>
         <tr>
-            <td>CCT-7/7x2</td>
+            <td>CCT-14t/7x2</td>
             <td>ImageNet-1k</td>
             <td>Learnable</td>
             <td>384x384</td>
