@@ -1,5 +1,8 @@
 # Compact Transformers
 
+	
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-the-big-data-paradigm-with-compact/image-classification-on-flowers-102)](https://paperswithcode.com/sota/image-classification-on-flowers-102?p=escaping-the-big-data-paradigm-with-compact)
+
 Preprint Link: [Escaping the Big Data Paradigm with Compact Transformers
 ](https://arxiv.org/abs/2104.05704)
 
