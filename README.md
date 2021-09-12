@@ -74,55 +74,136 @@ parameters.
 
 ## Install locally
 
-Please make sure you're using the following PyTorch version:
-```bash
-torch==1.8.1
-torchvision==0.9.1
-```
-Refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) page for detailed instructions.
+Our base model is in pure PyTorch and Torchvision. No extra packages are required.
+Please refer to [PyTorch's Getting Started](https://pytorch.org/get-started/locally/) page for detailed instructions.
 
-## Using Docker
-There's also a `Dockerfile`, which builds off of the PyTorch image (requires CUDA).
+Here are some of the models that can be imported from `src` (full list available in [Variants.md](Variants.md)):
+
+<table style="width:100%">
+    <thead>
+        <tr>
+            <td><b>Model</b></td>
+            <td><b>Resolution</b></td>
+            <td><b>PE</b></td>
+            <td><b>Name</b></td>
+            <td><b>Pretrained Weights</b></td>
+            <td><b>Config</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4>CCT-7/3x1</td>
+            <td rowspan=4>32x32</td>
+            <td>Learnable</td>
+            <td><code>cct_7_3x1_32</code></td>
+            <td>CIFAR-10/300 Epochs</td>
+            <td><code>pretrained/cct_7-3x1_cifar10_300epochs.yml</code></td>
+        </tr>
+        <tr>
+            <td>Sinusoidal</td>
+            <td><code>cct_7_3x1_32_sine</code></td>
+            <td>CIFAR-10/5000 Epochs</td>
+            <td><code>pretrained/cct_7-3x1_cifar10_5000epochs.yml</code></td>
+        </tr>
+        <tr>
+            <td>Learnable</td>
+            <td><code>cct_7_3x1_32_c100</code></td>
+            <td>CIFAR-100/300 Epochs</td>
+            <td><code>pretrained/cct_7-3x1_cifar100_300epochs.yml</code></td>
+        </tr>
+        <tr>
+            <td>Sinusoidal</td>
+            <td><code>cct_7_3x1_32_sine_c100</code></td>
+            <td>CIFAR-100/5000 Epochs</td>
+            <td><code>pretrained/cct_7-3x1_cifar100_5000epochs.yml</code></td>
+        </tr>
+        <tr>
+            <td>CCT-7/7x2</td>
+            <td>224x224</td>
+            <td>Sinusoidal</td>
+            <td><code>cct_7_7x2_224_sine</code></td>
+            <td>Flowers-102/300 Epochs</td>
+            <td><code>pretrained/cct_7-7x2_flowers102.yml</code></td>
+        </tr>
+        <tr>
+            <td rowspan=3>CCT-14/7x2</td>
+            <td>224x224</td>
+            <td rowspan=3>Learnable</td>
+            <td><code>cct_14_7x2_224</code></td>
+            <td>ImageNet-1k/300 Epochs</td>
+            <td><code>pretrained/cct_14-7x2_imagenet.yml</code></td>
+        </tr>
+        <tr>
+            <td>384x384</td>
+            <td><code>cct_14_7x2_384</code></td>
+            <td>ImageNet-1k/Finetuned/30 Epochs</td>
+            <td><code>finetuned/cct_14-7x2_imagenet384.yml</code></td>
+        </tr>
+        <tr>
+            <td>384x384</td>
+            <td><code>cct_14_7x2_384_fl</code></td>
+            <td>Flowers102/Finetuned/300 Epochs</td>
+            <td><code>finetuned/cct_14-7x2_flowers102.yml</code></td>
+        </tr>
+    </tbody>
+</table>
+
+You can simply import the names provided in the **Name** column:
+```python3
+from src import cct_14_7x2_384
+model = cct_14_7x2_384(pretrained=True, progress=True)
+```
+The config files are provided both to specify the training settings and hyperparameters, 
+and allow easier reproduction.
+
+Please note that the models missing pretrained weights will be updated soon. They were previously 
+trained using our old training script, and we're working on training them again with the new script 
+for consistency.
+
+You could even create your own models with different image resolutions, positional embeddings, and number of classes:
+```python3
+from src import cct_14_7x2_384, cct_7_7x2_224_sine
+model = cct_14_7x2_384(img_size=256)
+model = cct_7_7x2_224_sine(img_size=256, positional_embedding='sine')
+```
+Changing resolution and setting `pretrained=True` will interpolate the PE vector to support the new size, 
+just like ViT.
+
+These models are also based on experiments in the paper. You can create your own versions:
+```python3
+from src import cct_14
+model = cct_14(arch='custom', pretrained=False, progress=False, kernel_size=5, n_conv_layers=3)
+```
+
+You can even go further and create your own custom variant by importing the class CCT.
+
+All of these apply to CVT and ViT as well.
+
 
 ## Training
 
-We recommend starting with our faster version (CCT-2/3x2) which can be run with the
-following command. If you are running on a CPU we recommend this model.
-```bash
-python main.py \
-       --dataset cifar10 \
-       --model cct_2 \
-       --conv-size 3 \
-       --conv-layers 2 \
-       path/to/cifar10
+[timm](https://github.com/rwightman/pytorch-image-models) is recommended for image classification training 
+and required for the training script provided in this repository:
+### Distributed training
+```shell
+./dist_classification.sh $NUM_GPUS -c $CONFIG_FILE /path/to/dataset
 ```
 
-
-If you would like to run our best running models (CCT-6/3x1 or CCT-7/3x1)
-with CIFAR-10 on your machine, please use the following command.
-```bash
-python main.py \
-       --dataset cifar10 \
-       --model cct_6 \
-       --conv-size 3 \
-       --conv-layers 1 \
-       --warmup 10 \
-       --batch-size 64 \
-       --checkpoint-path /path/to/checkpoint.pth \
-       path/to/cifar10
+You can use our training configurations provided in `configs/`:
+```shell
+./dist_classification.sh 8 -c configs/imagenet.yml --model cct_14_7x2_224 /path/to/ImageNet
 ```
-## Evaluation
 
-You can use `evaluate.py` to evaluate the performance of a checkpoint.
-```bash
-python evaluate.py \
-       --dataset cifar10 \
-       --model cct_6 \
-       --conv-size 3 \
-       --conv-layers 1 \
-       --checkpoint-path /path/to/checkpoint.pth \
-       path/to/cifar10
+### Non-distributed training
+```shell
+python train.py -c configs/datasets/cifar10.yml --model cct_7_3x1_32 /path/to/cifar10
 ```
+
+### Models and config files
+We've updated this repository and moved the previous training script and the checkpoints associated 
+with it to `examples/`. The new training script here is just the `timm` training script. We've provided
+the checkpoints associated with it in the next section, and the hyperparameters are all provided in
+`configs/pretrained` for models trained from scratch, and `configs/finetuned` for fine-tuned models.
 
 # Results
 Type can be read in the format `L/PxC` where `L` is the number of transformer
@@ -134,117 +215,8 @@ convolutional layers.
 <table style="width:100%">
     <thead>
         <tr>
-            <td><b>Model</b></td> 
-            <td><b>Type</b></td> 
-            <td><b>Epochs</b></td> 
-            <td><b>CIFAR-10</b></td> 
-            <td><b>CIFAR-100</b></td> 
-            <td><b># Params</b></td> 
-            <td><b>MACs</b></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=2>ViT-Lite</td>
-            <td>7/4</td>
-            <td>200</td>
-	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666087/vitlite7-4_cifar10.pth.zip">91.38%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666088/vitlite7-4_cifar100.pth.zip">69.75%</a></td>
-            <td>3.717M</td>
-            <td>0.239G</td>
-        </tr>
-        <tr>
-            <td>6/4</td>
-            <td>200</td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666085/vitlite6-4_cifar10.pth.zip">90.94%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666086/vitlite6-4_cifar100.pth.zip">69.20%</a></td>
-            <td>3.191M</td>
-            <td>0.205G</td>
-        </tr>
-        <tr>
-            <td rowspan=2>CVT</td>
-            <td>7/4</td>
-            <td>200</td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666077/cvt7-4_cifar10.pth.zip">92.43%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666078/cvt7-4_cifar100.pth.zip">73.01%</a></td>
-            <td>3.717M</td>
-            <td>0.236G</td>
-        </tr>
-        <tr>
-            <td>6/4</td>
-            <td>200</td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666075/cvt6-4_cifar10.pth.zip">92.58%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666076/cvt6-4_cifar100.pth.zip">72.25%</a></td>
-            <td>3.190M</td>
-            <td>0.202G</td>
-        </tr>
-        <tr>
-            <td rowspan=7>CCT</td>
-            <td>2/3x2</td>
-            <td>200</td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666059/cct2-3x2_cifar10.pth.zip">89.17%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666060/cct2-3x2_cifar100.pth.zip">66.90%</a></td>
-            <td><b>0.284M</b></td>
-            <td><b>0.033G</b></td>
-        </tr>
-        <tr>
-            <td>4/3x2</td>
-            <td>200</td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666061/cct4-3x2_cifar10.pth.zip">91.45%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6666066/cct4-3x2_cifar100.pth.zip">70.46%</a></td>
-            <td>0.482M</td>
-            <td>0.046G</td>
-        </tr>
-        <tr>
-            <td>6/3x2</td>
-            <td>200</td>
-	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658604/cct6-3x2_cifar10_best.pth.zip">93.56%</a></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6658605/cct6-3x2_cifar100_best.pth.zip">74.47%</a></td>
-            <td>3.327M</td>
-            <td>0.241G</td>
-        </tr>
-        <tr>
-            <td>7/3x2</td>
-            <td>200</td>
-	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657152/cct7-3x2_cifar10_best.pth.zip">93.83%</a></td>
-	    <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657154/cct7-3x2_cifar100_best.pth.zip">74.92%</a></td>
-            <td>3.853M</td>
-            <td>0.275G</td>
-        </tr>
-        <tr>
-            <td>7/3x1</td>
-            <td>200</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6644400/cct7-3x1_cifar10_best.pth.zip">94.78%</a></b></td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657226/cct7-3x1_cifar100_best.pth.zip">77.05%</a></b></td>
-            <td>3.760M</td>
-            <td>0.947G</td>
-        </tr>
-        <tr>
-            <td>6/3x1</td>
-            <td>200</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657185/cct6-3x1_cifar10_best.pth.zip">94.81%</a></b></td>
-            <td><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6657221/cct6-3x1_cifar100_best.pth.zip">76.71%</a></td>
-            <td>3.168M</td>
-            <td>0.813G</td>
-        </tr>
-        <tr>
-            <td>6/3x1</td>
-            <td>500</td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730781/cct6-3x1_cifar10_500.pth.zip">95.29%</a></b></td>
-            <td><b><a href="https://github.com/SHI-Labs/Compact-Transformers/files/6730783/cct6-3x1_cifar100_500.pth.zip">77.31%</a></b></td>
-            <td>3.168M</td>
-            <td>0.813G</td>
-        </tr>
-    </tbody>
-</table>
-
-### Randaugment + Mixup + CutMix
-We trained the following using [timm](https://github.com/rwightman/pytorch-image-models).
-
-<table style="width:100%">
-    <thead>
-        <tr>
             <td><b>Model</b></td>
+            <td><b>Pretraining</b></td> 
             <td><b>Epochs</b></td> 
             <td><b>PE</b></td>
             <td><b>CIFAR-10</b></td> 
@@ -254,22 +226,23 @@ We trained the following using [timm](https://github.com/rwightman/pytorch-image
     <tbody>
         <tr>
             <td rowspan=3>CCT-7/3x1</td>
+            <td rowspan=3>None</td>
             <td>300</td>
             <td>Learnable</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_300epochs_96.53.pth">96.53%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar100_300epochs_80.92.pth">80.92%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar10_300epochs.pth">96.53%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar100_300epochs.pth">80.92%</a></td>
         </tr>
         <tr>
             <td>1500</td>
             <td>Sinusoidal</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_1500epochs_97.48.pth">97.48%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar100_1500epochs_82.72.pth">82.72%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar10_1500epochs.pth">97.48%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar100_1500epochs.pth">82.72%</a></td>
         </tr>
         <tr>
             <td>5000</td>
             <td>Sinusoidal</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct7-3x1_timm_cifar10_5000epochs_98.00.pth">98.00%</a></td>
-            <td>-</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar10_5000epochs.pth">98.00%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_3x1_32_cifar100_5000epochs.pth">82.87%</a></td>
         </tr>
     </tbody>
 </table>
@@ -292,14 +265,14 @@ We trained the following using [timm](https://github.com/rwightman/pytorch-image
             <td>None</td>
             <td>Sinusoidal</td>
             <td>224x224</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct_7-7x2_flowers.pth">97.19%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7-7x2_224_flowers102.pth">97.19%</a></td>
         </tr>
         <tr>
             <td>CCT-14t/7x2</td>
             <td>ImageNet-1k</td>
             <td>Learnable</td>
             <td>384x384</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct_14-7x2_flowers_finetuned.pth">99.76%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/finetuned/cct_14-7x2_384_flowers102.pth">99.76%</a></td>
         </tr>
     </tbody>
 </table>
@@ -333,96 +306,23 @@ We trained the following using [timm](https://github.com/rwightman/pytorch-image
             <td>14t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14t-7x2_imagenet_80.67.pth">80.67%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_14-7x2_imagenet.pth">80.66%</a></td>
             <td>22.36M</td>
             <td>5.11G</td>
         </tr>
         <tr>
             <td>14t/7x2</td>
 	        <td>384</td>
-            <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/cct14t-7x2_imagenet384_finetune_82.71.pth">82.71%</a></td>
+            <td>310 + 30</td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/finetuned/cct_14-7x2_imagenet384.pth">82.71%</a></td>
             <td>22.51M</td>
             <td>15.02G</td>
         </tr>
     </tbody>
 </table>
 
-Please note that we used [Ross Wightman's ImageNet training script](https://github.com/rwightman/pytorch-image-models) to train these.
-
-## NLP Results
-
-<table style="width:100%">
-    <thead>
-        <tr>
-            <td><b>Model</b></td> 
-            <td><b>Kernel size</b></td>
-            <td><b>AGNews</b></td>
-            <td><b>TREC</b></td>
-            <td><b># Params</b></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=3>CCT-2</td>
-            <td>1</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-1_agnews_93.45.pth">93.45%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-1_trec_91.00.pth">91.00%</a></td>
-            <td>0.238M</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-2_agnews_93.51.pth">93.51%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-2_trec_91.80.pth">91.80%</a></td>
-            <td>0.276M</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>93.80%</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct2-4_trec_91.00.pth">91.00%</a></td>
-            <td>0.353M</td>
-        </tr>
-        <tr>
-            <td rowspan=3>CCT-4</td>
-            <td>1</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-1_agnews_93.55.pth">93.55%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-1_trec_91.80.pth">91.80%</a></td>
-            <td>0.436M</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-2_agnews_93.24.pth">93.24%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-2_trec_93.60.pth">93.60%</a></td>
-            <td>0.475M</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>93.09%</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct4-4_trec_93.00.pth">93.00%</a></td>
-            <td>0.551M</td>
-        </tr>
-        <tr>
-            <td rowspan=3>CCT-6</td>
-            <td>1</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-1_agnews_93.78.pth">93.78%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-1_trec_91.60.pth">91.60%</a></td>
-            <td>3.237M</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-2_agnews_93.33.pth">93.33%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-2_trec_92.20.pth">92.20%</a></td>
-            <td>3.313M</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-4_agnews_92.95.pth">92.95%</a></td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/nlp/text_cct6-4_trec_92.80.pth">92.80%</a></td>
-            <td>3.467M</td>
-        </tr>
-    </tbody>
-</table>
-More models are being uploaded.
+# NLP
+NLP results and instructions have been moved to [nlp/](nlp/README.md).
 
 # Citation
 ```bibtex

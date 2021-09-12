@@ -141,9 +141,8 @@ class TransformerClassifier(Module):
                  dropout=0.1,
                  attention_dropout=0.1,
                  stochastic_depth=0.1,
-                 positional_embedding='sine',
-                 sequence_length=None,
-                 *args, **kwargs):
+                 positional_embedding='learnable',
+                 sequence_length=None):
         super().__init__()
         positional_embedding = positional_embedding if \
             positional_embedding in ['sine', 'learnable', 'none'] else 'sine'

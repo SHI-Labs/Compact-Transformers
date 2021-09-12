@@ -1,0 +1,39 @@
+dataset: imagenet
+num_classes: 1000
+img_size: 384
+mean:
+    - 0.485
+    - 0.456
+    - 0.406
+std:
+    - 0.229
+    - 0.224
+    - 0.225
+crop_pct: 0.9
+scale:
+    - 0.08
+    - 1.0
+interpolation: bicubic
+train_interpolation: random
+aa: rand-m9-mstd0.5-inc1
+mixup: 0.8
+mixup_off_epoch: 0
+mixup_prob: 1.0
+mixup_mode: batch
+mixup_switch_prob: 0.5
+cutmix: 1.0
+amp: True
+model: cct_14t-7x2_learnablePE_224
+pretrained: True
+model_ema: False
+batch_size: 96
+lr: 1e-5
+min_lr: 0
+sched: cosine
+weight_decay: 0
+epochs: 30
+cooldown_epochs: 10
+warmup_epochs: 0
+warmup_lr: 0.0
+opt: adamw
+smoothing: 0.1
