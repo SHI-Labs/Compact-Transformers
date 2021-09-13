@@ -23,6 +23,7 @@ mixup_mode: batch
 mixup_switch_prob: 0.5
 cutmix: 1.0
 reprob: 0
+remode: pixel
 amp: True
 model: cct_7-3x1_32
 model_ema: False
@@ -37,3 +38,4 @@ warmup_epochs: 10
 warmup_lr: 0.00001
 opt: adamw
 smoothing: 0.1
+workers: 8
