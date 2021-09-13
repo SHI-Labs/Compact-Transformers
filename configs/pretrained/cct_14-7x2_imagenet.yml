@@ -32,7 +32,7 @@ sched: cosine
 weight_decay: 5e-2
 epochs: 300
 cooldown_epochs: 10
-warmup_epochs: 25
+warmup_epochs: 10
 warmup_lr: 0.000001
 opt: adamw
 smoothing: 0.1
