@@ -22,6 +22,8 @@ mixup_prob: 1.0
 mixup_mode: batch
 mixup_switch_prob: 0.5
 cutmix: 1.0
+reprob: 0.25
+remode: pixel
 amp: True
 model: cct_14t-7x2_learnablePE_224
 pretrained: True
@@ -37,3 +39,4 @@ warmup_epochs: 0
 warmup_lr: 0.0
 opt: adamw
 smoothing: 0.1
+workers: 8

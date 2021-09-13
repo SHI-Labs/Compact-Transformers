@@ -309,7 +309,7 @@ convolutional layers.
             <td>14t/7x2</td>
 	        <td>224</td>
             <td>310</td>
-            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_14-7x2_imagenet.pth">80.66%</a></td>
+            <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_14-7x2_imagenet.pth">80.67%</a></td>
             <td>22.36M</td>
             <td>5.11G</td>
         </tr>
