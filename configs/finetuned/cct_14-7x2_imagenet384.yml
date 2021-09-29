@@ -25,7 +25,7 @@ cutmix: 1.0
 reprob: 0.25
 remode: pixel
 amp: True
-model: cct_14t-7x2_learnablePE_224
+model: cct_14_7x2_224
 pretrained: True
 model_ema: False
 batch_size: 96
