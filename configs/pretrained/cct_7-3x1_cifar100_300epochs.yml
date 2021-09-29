@@ -25,7 +25,7 @@ cutmix: 1.0
 reprob: 0.25
 remode: pixel
 amp: True
-model: cct_7-3x1_32
+model: cct_7_3x1_32
 model_ema: False
 batch_size: 128
 lr: 6e-4

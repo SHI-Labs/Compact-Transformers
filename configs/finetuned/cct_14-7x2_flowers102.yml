@@ -27,7 +27,7 @@ cutmix: 1.0
 reprob: 0.25
 remode: pixel
 amp: True
-model: cct_14-7x2_384
+model: cct_14_7x2_384
 pretrained: True
 model_ema: False
 batch_size: 20
