@@ -479,6 +479,8 @@ def main():
         batch_size=args.batch_size, repeats=args.epoch_repeats)
     dataset_eval = create_dataset(
         args.dataset, root=args.data_dir, split=args.val_split, is_training=False, batch_size=args.batch_size)
+    
+    print(len(dataset_train), len(dataset_eval))
 
     # setup mixup / cutmix
     collate_fn = None
