@@ -767,9 +767,9 @@ def validate(model, loader, loss_fn, args, amp_autocast=suppress, log_suffix='')
             loss = loss_fn(output, target)
             
             try:
-                acc1, acc5 = accuracy((rot_p+contrastive_p)/2., targets, topk=(1, 5))
+                acc1, acc5 = accuracy(output, targets, topk=(1, 5))
             except:
-                acc1, acc5 = accuracy((rot_p+contrastive_p)/2., targets, topk=(1, 2))
+                acc1, acc5 = accuracy(output, targets, topk=(1, 2))
 
             if args.distributed:
                 reduced_loss = reduce_tensor(loss.data, args.world_size)
