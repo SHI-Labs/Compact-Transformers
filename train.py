@@ -483,7 +483,6 @@ def main():
         batch_size=args.batch_size, repeats=args.epoch_repeats)
     dataset_eval = create_dataset(
         args.dataset, root=args.data_dir, split=args.val_split, is_training=False, batch_size=args.batch_size)
-    
 
     # setup mixup / cutmix
     collate_fn = None
@@ -586,7 +585,7 @@ def main():
             checkpoint_dir=output_dir, recovery_dir=output_dir, decreasing=decreasing, max_history=args.checkpoint_hist)
         with open(os.path.join(output_dir, 'args.yaml'), 'w') as f:
             f.write(args_text)
-    
+
     if args.evaluate:      # Evaluating model on validation set
         eval_metrics = validate(model, loader_eval, validate_loss_fn, args, amp_autocast=amp_autocast)
         print(f"Accuracy of the network on the {len(dataset_eval)} test images: {eval_metrics['top1']:.1f}%")
@@ -775,11 +774,7 @@ def validate(model, loader, loss_fn, args, amp_autocast=suppress, log_suffix='')
                 target = target[0:target.size(0):reduce_factor]
 
             loss = loss_fn(output, target)
-            
-            try:
-                acc1, acc5 = accuracy(output, target, topk=(1, 5))
-            except:
-                acc1, acc5 = accuracy(output, target, topk=(1, 2))
+            acc1, acc5 = accuracy(output, target, topk=(1, 5))
 
             if args.distributed:
                 reduced_loss = reduce_tensor(loss.data, args.world_size)
