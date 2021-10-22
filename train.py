@@ -588,7 +588,7 @@ def main():
     
     if args.evaluate:      # Evaluating model on validation set
         eval_metrics = validate(model, loader_eval, validate_loss_fn, args, amp_autocast=amp_autocast)
-        print(f"Accuracy of the network on the {len(dataset_eval)} test images: {eval_metrics['acc1']:.1f}%")
+        print(f"Accuracy of the network on the {len(dataset_eval)} test images: {eval_metrics['top1']:.1f}%")
         return
     
     try:
