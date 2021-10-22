@@ -284,7 +284,7 @@ parser.add_argument('--torchscript', dest='torchscript', action='store_true',
 parser.add_argument('--log-wandb', action='store_true', default=False,
                     help='log training and validation metrics to wandb')
 
-parser.add_argument('--evaluate', action='store_true', default=False,
+parser.add_argument('--evaluate', action='store_true', type=int, default=0,
                     help='Perform evaluation only')
 
 
@@ -586,7 +586,7 @@ def main():
         with open(os.path.join(output_dir, 'args.yaml'), 'w') as f:
             f.write(args_text)
     
-    if args.eval:      # Evaluating model on validation set
+    if args.evaluate:      # Evaluating model on validation set
         eval_metrics = validate(model, loader_eval, validate_loss_fn, args, amp_autocast=amp_autocast)
         print(f"Accuracy of the network on the {len(dataset_eval)} test images: {eval_metrics['acc1']:.1f}%")
         return
