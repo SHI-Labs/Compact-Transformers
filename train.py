@@ -284,7 +284,8 @@ parser.add_argument('--torchscript', dest='torchscript', action='store_true',
 parser.add_argument('--log-wandb', action='store_true', default=False,
                     help='log training and validation metrics to wandb')
 
-parser.add_argument('--evaluate', type=int, default=None,
+# Evaluation
+parser.add_argument('--evaluate', action='store_true', default=False,
                     help='Perform evaluation only')
 
 
