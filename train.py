@@ -284,6 +284,9 @@ parser.add_argument('--torchscript', dest='torchscript', action='store_true',
 parser.add_argument('--log-wandb', action='store_true', default=False,
                     help='log training and validation metrics to wandb')
 
+# Evaluation
+parser.add_argument('--evaluate', action='store_true', default=False,
+                   help='evaluate model on eval_dataset')
 
 def _parse_args():
     # Do we have a config file to parse?
@@ -581,7 +584,11 @@ def main():
             checkpoint_dir=output_dir, recovery_dir=output_dir, decreasing=decreasing, max_history=args.checkpoint_hist)
         with open(os.path.join(output_dir, 'args.yaml'), 'w') as f:
             f.write(args_text)
-
+    
+    if args.evaluate:
+        eval_metrics = validate(model, loader_eval, validate_loss_fn, args, amp_autocast=amp_autocast)
+        return
+    
     try:
         for epoch in range(start_epoch, num_epochs):
             if args.distributed and hasattr(loader_train.sampler, 'set_epoch'):
