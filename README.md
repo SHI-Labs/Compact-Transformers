@@ -271,7 +271,7 @@ convolutional layers.
             <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_7_7x2_224_flowers102.pth">97.19%</a></td>
         </tr>
         <tr>
-            <td>CCT-14t/7x2</td>
+            <td>CCT-14/7x2</td>
             <td>ImageNet-1k</td>
             <td>Learnable</td>
             <td>384x384</td>
@@ -306,7 +306,7 @@ convolutional layers.
         </tr>
         <tr>
             <td rowspan=2>CCT</td>
-            <td>14t/7x2</td>
+            <td>14/7x2</td>
 	        <td>224</td>
             <td>310</td>
             <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/pretrained/cct_14_7x2_224_imagenet.pth">80.67%</a></td>
@@ -314,7 +314,7 @@ convolutional layers.
             <td>5.11G</td>
         </tr>
         <tr>
-            <td>14t/7x2</td>
+            <td>14/7x2</td>
 	        <td>384</td>
             <td>310 + 30</td>
             <td><a href="http://ix.cs.uoregon.edu/~alih/compact-transformers/checkpoints/finetuned/cct_14_7x2_384_imagenet.pth">82.71%</a></td>
