@@ -2,7 +2,7 @@ from torch.hub import load_state_dict_from_url
 import torch.nn as nn
 from .utils.transformers import TransformerClassifier
 from .utils.tokenizer import Tokenizer
-from .utils.helpers import pe_check
+from .utils.helpers import pe_check, fc_check
 
 try:
     from timm.models.registry import register_model
@@ -106,6 +106,7 @@ def _cct(arch, pretrained, progress,
             state_dict = load_state_dict_from_url(model_urls[arch],
                                                   progress=progress)
             state_dict = pe_check(model, state_dict)
+            state_dict = fc_check(model, state_dict)
             model.load_state_dict(state_dict)
         else:
             raise RuntimeError(f'Variant {arch} does not yet have pretrained weights.')
