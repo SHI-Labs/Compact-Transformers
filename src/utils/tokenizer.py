@@ -100,7 +100,9 @@ class TextTokenizer(nn.Module):
         x = x.unsqueeze(1)
         x = self.conv_layers(x)
         x = x.transpose(1, 3).squeeze(1)
-        x = x if mask is None else x * self.forward_mask(mask).unsqueeze(-1).float()
+        if mask is not None:
+            mask = self.forward_mask(mask).unsqueeze(-1).float()
+            x = x * mask
         return x, mask
 
     @staticmethod
