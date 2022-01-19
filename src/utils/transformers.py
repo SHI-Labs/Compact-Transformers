@@ -150,6 +150,7 @@ class TransformerClassifier(Module):
         self.embedding_dim = embedding_dim
         self.sequence_length = sequence_length
         self.seq_pool = seq_pool
+        self.num_tokens = 0
 
         assert sequence_length is not None or positional_embedding == 'none', \
             f"Positional embedding is set to {positional_embedding} and" \
@@ -159,6 +160,7 @@ class TransformerClassifier(Module):
             sequence_length += 1
             self.class_emb = Parameter(torch.zeros(1, 1, self.embedding_dim),
                                        requires_grad=True)
+            self.num_tokens = 1
         else:
             self.attention_pool = Linear(self.embedding_dim, 1)
 
