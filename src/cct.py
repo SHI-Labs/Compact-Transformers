@@ -89,6 +89,7 @@ class CCT(nn.Module):
 def _cct(arch, pretrained, progress,
          num_layers, num_heads, mlp_ratio, embedding_dim,
          kernel_size=3, stride=None, padding=None,
+         positional_embedding='learnable',
          *args, **kwargs):
     stride = stride if stride is not None else max(1, (kernel_size // 2) - 1)
     padding = padding if padding is not None else max(1, (kernel_size // 2))
@@ -105,7 +106,8 @@ def _cct(arch, pretrained, progress,
         if arch in model_urls:
             state_dict = load_state_dict_from_url(model_urls[arch],
                                                   progress=progress)
-            state_dict = pe_check(model, state_dict)
+            if positional_embedding == 'learnable':
+                state_dict = pe_check(model, state_dict)
             state_dict = fc_check(model, state_dict)
             model.load_state_dict(state_dict)
         else:

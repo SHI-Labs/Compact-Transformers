@@ -64,7 +64,8 @@ class CVT(nn.Module):
 
 def _cvt(arch, pretrained, progress,
          num_layers, num_heads, mlp_ratio, embedding_dim,
-         kernel_size=4, *args, **kwargs):
+         kernel_size=4, positional_embedding='learnable',
+         *args, **kwargs):
     model = CVT(num_layers=num_layers,
                 num_heads=num_heads,
                 mlp_ratio=mlp_ratio,
@@ -75,7 +76,8 @@ def _cvt(arch, pretrained, progress,
     if pretrained and arch in model_urls:
         state_dict = load_state_dict_from_url(model_urls[arch],
                                               progress=progress)
-        state_dict = pe_check(model, state_dict)
+        if positional_embedding == 'learnable':
+            state_dict = pe_check(model, state_dict)
         model.load_state_dict(state_dict)
     return model
 

@@ -70,11 +70,14 @@ def _vit_lite(arch, pretrained, progress,
                     mlp_ratio=mlp_ratio,
                     embedding_dim=embedding_dim,
                     kernel_size=kernel_size,
+                    positional_embedding='learnable',
                     *args, **kwargs)
 
     if pretrained and arch in model_urls:
         state_dict = load_state_dict_from_url(model_urls[arch],
                                               progress=progress)
+        if positional_embedding == 'learnable':
+            state_dict = pe_check(model, state_dict)
         state_dict = pe_check(model, state_dict)
         model.load_state_dict(state_dict)
     return model
