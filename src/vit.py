@@ -78,6 +78,8 @@ def _vit_lite(arch, pretrained, progress,
                                               progress=progress)
         if positional_embedding == 'learnable':
             state_dict = pe_check(model, state_dict)
+        elif positional_embedding == 'sine':
+            state_dict['classifier.positional_emb'] = model.state_dict()['classifier.positional_emb']
         state_dict = pe_check(model, state_dict)
         model.load_state_dict(state_dict)
     return model
