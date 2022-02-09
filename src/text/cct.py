@@ -1,6 +1,6 @@
 import torch.nn as nn
 from ..utils.transformers import MaskedTransformerClassifier
-from ..utils.tokenizer import TextTokenizer
+from ..utils.tokenizer import TextTokenizer1D
 from ..utils.embedder import Embedder
 
 __all__ = [
@@ -27,7 +27,7 @@ class TextCCT(nn.Module):
         self.embedder = Embedder(word_embedding_dim=word_embedding_dim,
                                  *args, **kwargs)
 
-        self.tokenizer = TextTokenizer(n_input_channels=word_embedding_dim,
+        self.tokenizer = TextTokenizer1D(n_input_channels=word_embedding_dim,
                                        n_output_channels=embedding_dim,
                                        kernel_size=kernel_size,
                                        stride=stride,

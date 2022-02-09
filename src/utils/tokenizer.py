@@ -109,3 +109,66 @@ class TextTokenizer(nn.Module):
     def init_weight(m):
         if isinstance(m, nn.Conv2d):
             nn.init.kaiming_normal_(m.weight)
+
+
+class TextTokenizer1D(nn.Module):
+    def __init__(self,
+                 kernel_size, stride, padding,
+                 pooling_kernel_size=3, pooling_stride=2, pooling_padding=1,
+                 embedding_dim=300,
+                 n_output_channels=128,
+                 activation=None,
+                 max_pool=True,
+                 *args, **kwargs):
+                 
+        super(TextTokenizer1D, self).__init__()
+
+        self.max_pool = max_pool
+        self.conv_layers = nn.Sequential(
+            nn.Conv1d(in_channels=embedding_dim, out_channels=n_output_channels,
+                      kernel_size=kernel_size,
+                      stride=stride,
+                      padding=padding, bias=False),
+            nn.Identity() if activation is None else activation(),
+            nn.MaxPool1d(
+                kernel_size=pooling_kernel_size,
+                stride=pooling_stride,
+                padding=pooling_padding
+            ) if max_pool else nn.Identity()
+        )
+
+        self.apply(self.init_weight)
+
+    def seq_len(self, seq_len=32, embed_dim=300):
+        return self.forward(torch.zeros((1, seq_len, embed_dim)))[0].shape[1]
+
+    def forward_mask(self, mask):
+        new_mask = mask.unsqueeze(1).float()
+        cnn_weight = torch.ones(
+            (1, 1, self.conv_layers[0].kernel_size[0]),
+            device=mask.device,
+            dtype=torch.float)
+        new_mask = F.conv1d(
+            new_mask, cnn_weight, None,
+            self.conv_layers[0].stride[0], self.conv_layers[0].padding[0], 1, 1)
+        if self.max_pool:
+            new_mask = F.max_pool1d(
+                new_mask, self.conv_layers[2].kernel_size[0],
+                self.conv_layers[2].stride[0], self.conv_layers[2].padding[0], 1, False, False)
+        new_mask = new_mask.squeeze(1)
+        new_mask = (new_mask > 0)
+        return new_mask
+
+    def forward(self, x, mask=None):
+        x = self.conv_layers(x.transpose(1,2))
+        x = x.transpose(1, 2)
+        x = x if mask is None else x * self.forward_mask(mask).unsqueeze(-1).float()
+        if mask is not None:
+            mask = self.forward_mask(mask).unsqueeze(-1).float()
+            x = x * mask
+        return x, mask
+        
+    @staticmethod
+    def init_weight(m):
+        if isinstance(m, nn.Conv2d):
+            nn.init.kaiming_normal_(m.weight)
