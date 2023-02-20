@@ -116,7 +116,7 @@ def main():
     num_classes = DATASETS[args.dataset]['num_classes']
     img_mean, img_std = DATASETS[args.dataset]['mean'], DATASETS[args.dataset]['std']
 
-    model = models.__dict__[args.model](img_size=img_size,
+    model = models.__dict__[args.model]('', False, False, img_size=img_size,
                                         num_classes=num_classes,
                                         positional_embedding=args.positional_embedding,
                                         n_conv_layers=args.conv_layers,
