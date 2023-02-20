@@ -64,13 +64,14 @@ class ViTLite(nn.Module):
 
 def _vit_lite(arch, pretrained, progress,
               num_layers, num_heads, mlp_ratio, embedding_dim,
+              positional_embedding='learnable',
               kernel_size=4, *args, **kwargs):
     model = ViTLite(num_layers=num_layers,
                     num_heads=num_heads,
                     mlp_ratio=mlp_ratio,
                     embedding_dim=embedding_dim,
                     kernel_size=kernel_size,
-                    positional_embedding='learnable',
+                    positional_embedding=positional_embedding,
                     *args, **kwargs)
 
     if pretrained and arch in model_urls:
