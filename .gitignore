@@ -1,0 +1,4 @@
+*.sw?
+__pycache__
+examples/src
+*.pth

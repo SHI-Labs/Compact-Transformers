@@ -117,26 +117,31 @@ def _cct(arch, pretrained, progress,
     return model
 
 
+@register_model
 def cct_2(arch, pretrained, progress, *args, **kwargs):
     return _cct(arch, pretrained, progress, num_layers=2, num_heads=2, mlp_ratio=1, embedding_dim=128,
                 *args, **kwargs)
 
 
+@register_model
 def cct_4(arch, pretrained, progress, *args, **kwargs):
     return _cct(arch, pretrained, progress, num_layers=4, num_heads=2, mlp_ratio=1, embedding_dim=128,
                 *args, **kwargs)
 
 
+@register_model
 def cct_6(arch, pretrained, progress, *args, **kwargs):
     return _cct(arch, pretrained, progress, num_layers=6, num_heads=4, mlp_ratio=2, embedding_dim=256,
                 *args, **kwargs)
 
 
+@register_model
 def cct_7(arch, pretrained, progress, *args, **kwargs):
     return _cct(arch, pretrained, progress, num_layers=7, num_heads=4, mlp_ratio=2, embedding_dim=256,
                 *args, **kwargs)
 
 
+@register_model
 def cct_14(arch, pretrained, progress, *args, **kwargs):
     return _cct(arch, pretrained, progress, num_layers=14, num_heads=6, mlp_ratio=3, embedding_dim=384,
                 *args, **kwargs)
